@@ -9,13 +9,24 @@
 /* Begin PBXBuildFile section */
 		7EB8A4F027DB5CB800940803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A4EF27DB5CB800940803 /* AppDelegate.swift */; };
 		7EB8A4F227DB5CB800940803 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F127DB5CB800940803 /* SceneDelegate.swift */; };
-		7EB8A4F427DB5CB800940803 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F327DB5CB800940803 /* ViewController.swift */; };
+		7EB8A4F427DB5CB800940803 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F327DB5CB800940803 /* WelcomeViewController.swift */; };
 		7EB8A4F727DB5CB800940803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F527DB5CB800940803 /* Main.storyboard */; };
 		7EB8A4F927DB5CBA00940803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F827DB5CBA00940803 /* Assets.xcassets */; };
 		7EB8A4FC27DB5CBA00940803 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8A4FA27DB5CBA00940803 /* LaunchScreen.storyboard */; };
 		7EB8A50727DB5CBA00940803 /* UniphoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A50627DB5CBA00940803 /* UniphoneTests.swift */; };
 		7EB8A51127DB5CBA00940803 /* UniphoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A51027DB5CBA00940803 /* UniphoneUITests.swift */; };
 		7EB8A51327DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A51227DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift */; };
+		7EBA416027E882AC00F43F3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA415F27E882AC00F43F3F /* LoginViewController.swift */; };
+		7EBA416227E882C800F43F3F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA416127E882C800F43F3F /* RegisterViewController.swift */; };
+		7EBA416427E882D800F43F3F /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA416327E882D800F43F3F /* HelloViewController.swift */; };
+		7EBA416627E8865F00F43F3F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7EBA416527E8865F00F43F3F /* GoogleService-Info.plist */; };
+		7EBA416927E8883300F43F3F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7EBA416827E8883300F43F3F /* FirebaseAuth */; };
+		7EBA416B27E8883300F43F3F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7EBA416A27E8883300F43F3F /* FirebaseDatabase */; };
+		7EBA416D27E8883300F43F3F /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 7EBA416C27E8883300F43F3F /* FirebaseDatabaseSwift-Beta */; };
+		7EBA416F27E8883300F43F3F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7EBA416E27E8883300F43F3F /* FirebaseFirestore */; };
+		7EBA417127E8883300F43F3F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7EBA417027E8883300F43F3F /* FirebaseStorage */; };
+		7EBA417327EB599600F43F3F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA417227EB599500F43F3F /* MenuViewController.swift */; };
+		7EBA417527EB59CA00F43F3F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA417427EB59CA00F43F3F /* ContainerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +50,7 @@
 		7EB8A4EC27DB5CB800940803 /* Uniphone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uniphone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB8A4EF27DB5CB800940803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7EB8A4F127DB5CB800940803 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7EB8A4F327DB5CB800940803 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7EB8A4F327DB5CB800940803 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		7EB8A4F627DB5CB800940803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7EB8A4F827DB5CBA00940803 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7EB8A4FB27DB5CBA00940803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +60,12 @@
 		7EB8A50C27DB5CBA00940803 /* UniphoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniphoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB8A51027DB5CBA00940803 /* UniphoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniphoneUITests.swift; sourceTree = "<group>"; };
 		7EB8A51227DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniphoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7EBA415F27E882AC00F43F3F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7EBA416127E882C800F43F3F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7EBA416327E882D800F43F3F /* HelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
+		7EBA416527E8865F00F43F3F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7EBA417227EB599500F43F3F /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		7EBA417427EB59CA00F43F3F /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +73,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EBA416D27E8883300F43F3F /* FirebaseDatabaseSwift-Beta in Frameworks */,
+				7EBA416F27E8883300F43F3F /* FirebaseFirestore in Frameworks */,
+				7EBA416B27E8883300F43F3F /* FirebaseDatabase in Frameworks */,
+				7EBA417127E8883300F43F3F /* FirebaseStorage in Frameworks */,
+				7EBA416927E8883300F43F3F /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +121,14 @@
 		7EB8A4EE27DB5CB800940803 /* Uniphone */ = {
 			isa = PBXGroup;
 			children = (
+				7EBA415E27E87E7E00F43F3F /* Controllers */,
 				7EB8A4EF27DB5CB800940803 /* AppDelegate.swift */,
 				7EB8A4F127DB5CB800940803 /* SceneDelegate.swift */,
-				7EB8A4F327DB5CB800940803 /* ViewController.swift */,
 				7EB8A4F527DB5CB800940803 /* Main.storyboard */,
 				7EB8A4F827DB5CBA00940803 /* Assets.xcassets */,
 				7EB8A4FA27DB5CBA00940803 /* LaunchScreen.storyboard */,
 				7EB8A4FD27DB5CBA00940803 /* Info.plist */,
+				7EBA416527E8865F00F43F3F /* GoogleService-Info.plist */,
 			);
 			path = Uniphone;
 			sourceTree = "<group>";
@@ -127,6 +150,19 @@
 			path = UniphoneUITests;
 			sourceTree = "<group>";
 		};
+		7EBA415E27E87E7E00F43F3F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8A4F327DB5CB800940803 /* WelcomeViewController.swift */,
+				7EBA415F27E882AC00F43F3F /* LoginViewController.swift */,
+				7EBA416127E882C800F43F3F /* RegisterViewController.swift */,
+				7EBA416327E882D800F43F3F /* HelloViewController.swift */,
+				7EBA417227EB599500F43F3F /* MenuViewController.swift */,
+				7EBA417427EB59CA00F43F3F /* ContainerViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +179,13 @@
 			dependencies = (
 			);
 			name = Uniphone;
+			packageProductDependencies = (
+				7EBA416827E8883300F43F3F /* FirebaseAuth */,
+				7EBA416A27E8883300F43F3F /* FirebaseDatabase */,
+				7EBA416C27E8883300F43F3F /* FirebaseDatabaseSwift-Beta */,
+				7EBA416E27E8883300F43F3F /* FirebaseFirestore */,
+				7EBA417027E8883300F43F3F /* FirebaseStorage */,
+			);
 			productName = Uniphone;
 			productReference = 7EB8A4EC27DB5CB800940803 /* Uniphone.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +258,9 @@
 				Base,
 			);
 			mainGroup = 7EB8A4E327DB5CB800940803;
+			packageReferences = (
+				7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 7EB8A4ED27DB5CB800940803 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EB8A4FC27DB5CBA00940803 /* LaunchScreen.storyboard in Resources */,
+				7EBA416627E8865F00F43F3F /* GoogleService-Info.plist in Resources */,
 				7EB8A4F927DB5CBA00940803 /* Assets.xcassets in Resources */,
 				7EB8A4F727DB5CB800940803 /* Main.storyboard in Resources */,
 			);
@@ -258,7 +305,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EB8A4F427DB5CB800940803 /* ViewController.swift in Sources */,
+				7EBA416027E882AC00F43F3F /* LoginViewController.swift in Sources */,
+				7EBA416227E882C800F43F3F /* RegisterViewController.swift in Sources */,
+				7EBA417527EB59CA00F43F3F /* ContainerViewController.swift in Sources */,
+				7EB8A4F427DB5CB800940803 /* WelcomeViewController.swift in Sources */,
+				7EBA417327EB599600F43F3F /* MenuViewController.swift in Sources */,
+				7EBA416427E882D800F43F3F /* HelloViewController.swift in Sources */,
 				7EB8A4F027DB5CB800940803 /* AppDelegate.swift in Sources */,
 				7EB8A4F227DB5CB800940803 /* SceneDelegate.swift in Sources */,
 			);
@@ -604,6 +656,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7EBA416827E8883300F43F3F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7EBA416A27E8883300F43F3F /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		7EBA416C27E8883300F43F3F /* FirebaseDatabaseSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseDatabaseSwift-Beta";
+		};
+		7EBA416E27E8883300F43F3F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		7EBA417027E8883300F43F3F /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EBA416727E8883300F43F3F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7EB8A4E427DB5CB800940803 /* Project object */;
 }
