@@ -21,6 +21,7 @@ class WelcomeViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         let letterText="Uniphone📱"
         var indexchar=0.0
         for letter in letterText{
