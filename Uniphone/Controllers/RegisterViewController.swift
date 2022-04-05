@@ -9,6 +9,7 @@ import Firebase
 class RegisterViewController: UIViewController {
 
 
+    @IBOutlet weak var errorsays: UILabel!
     @IBOutlet weak var emailTextfield: UITextField!
     
     @IBOutlet weak var passwordTextfield: UITextField!
@@ -17,6 +18,7 @@ class RegisterViewController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: password){ authResult, error in
                 if let e = error {
                     print(e)
+                    self.errorsays.text = e.localizedDescription
                 }else{
                     self.performSegue(withIdentifier: "RegisterToSee", sender: self)
                 }

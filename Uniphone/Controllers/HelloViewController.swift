@@ -3,20 +3,31 @@
 //  Uniphone
 //
 import UIKit
+import SwiftUI
 
 class HelloViewController: UIViewController {
     @IBOutlet weak var leading1: NSLayoutConstraint!
     @IBOutlet weak var trailing1: NSLayoutConstraint!
     @IBOutlet weak var leading: NSLayoutConstraint!
     @IBOutlet weak var traling: NSLayoutConstraint!
+    let v = UIHostingController(rootView: ContentView())
+    @IBAction func ifUniPortPressed(_ sender: UIButton) {
+     navigationController?.pushViewController(v, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [ UIColor.orange.cgColor,UIColor.systemPink.cgColor, UIColor.magenta.cgColor,UIColor.purple.cgColor]
+        gradientLayer.colors = [ UIColor(red: 0.31, green: 0.60, blue: 0.27, alpha: 1.00),UIColor(red: 0.31, green: 0.70, blue: 0.30, alpha: 1.00), UIColor(red: 0.40, green: 0.80, blue: 0.27, alpha: 1.00)]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
+        leading1.constant=0
+        trailing1.constant=0    }
+    @IBSegueAction func Seque(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: ContentView())
+        
     }
-var menuOut = false
+    var menuOut = false
     @IBAction func menuTapped(_ sender: Any) {
         if menuOut == false {
             leading.constant = 150
