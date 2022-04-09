@@ -54,7 +54,7 @@ struct Home: View {
             await uniPortData.fetchPosts()
             
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
-            
+            PostView().environmentObject(uniPortData)
         })
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             

@@ -28,6 +28,8 @@ struct PostContent:Identifiable,Codable{
     var id=UUID().uuidString
     var value: String
     var type: PostType
+    var height: CGFloat = 0
+    var showImage: Bool = false
     enum CodingKeys : String,CodingKey{
       
         case type = "key"//firestore jest to key

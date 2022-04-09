@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7E6FA5932801C35B002DD295 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FA5922801C35B002DD295 /* PostView.swift */; };
+		7E6FA5952801CE09002DD295 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FA5942801CE09002DD295 /* TextView.swift */; };
+		7E6FA5982801D514002DD295 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FA5972801D514002DD295 /* ImagePickerView.swift */; };
 		7E70EABF27FB7A1D00DCE613 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7E70EABE27FB7A1D00DCE613 /* FirebaseFirestore */; };
 		7E70EAC127FB7A1D00DCE613 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 7E70EAC027FB7A1D00DCE613 /* FirebaseFirestoreCombine-Community */; };
 		7E70EAC327FB7A1D00DCE613 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 7E70EAC227FB7A1D00DCE613 /* FirebaseFirestoreSwift-Beta */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		7E6FA5922801C35B002DD295 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		7E6FA5942801CE09002DD295 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		7E6FA5972801D514002DD295 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		7E70EAC827FB7B6D00DCE613 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		7E70EACA27FB834800DCE613 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7E70EACC27FB83C200DCE613 /* UniPortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniPortViewModel.swift; sourceTree = "<group>"; };
@@ -114,6 +118,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E6FA5962801D4F8002DD295 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				7E6FA5972801D514002DD295 /* ImagePickerView.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		7E70EAC427FB7A7600DCE613 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 				7E70EAC827FB7B6D00DCE613 /* Home.swift */,
 				7E70EACA27FB834800DCE613 /* ContentView.swift */,
 				7E70EAD127FC850E00DCE613 /* UniPortApp.swift */,
+				7E6FA5942801CE09002DD295 /* TextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,6 +177,7 @@
 		7EB8A4EE27DB5CB800940803 /* Uniphone */ = {
 			isa = PBXGroup;
 			children = (
+				7E6FA5962801D4F8002DD295 /* Image */,
 				7E70EACE27FB83CA00DCE613 /* Model */,
 				7E70EAC527FB7A9400DCE613 /* ViewModel */,
 				7E70EAC427FB7A7600DCE613 /* View */,
@@ -365,6 +379,8 @@
 				7E70EACD27FB83C200DCE613 /* UniPortViewModel.swift in Sources */,
 				7E70EAD027FB83F300DCE613 /* Post.swift in Sources */,
 				7EBA417827ECFF7A00F43F3F /* Button.swift in Sources */,
+				7E6FA5952801CE09002DD295 /* TextView.swift in Sources */,
+				7E6FA5982801D514002DD295 /* ImagePickerView.swift in Sources */,
 				7EBA416027E882AC00F43F3F /* LoginViewController.swift in Sources */,
 				7EBA416227E882C800F43F3F /* RegisterViewController.swift in Sources */,
 				7EB8A4F427DB5CB800940803 /* WelcomeViewController.swift in Sources */,
