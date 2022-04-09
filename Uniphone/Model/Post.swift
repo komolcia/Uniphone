@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
+import Firebase
 import FirebaseFirestoreSwift
- import Firebase
 struct Post: Identifiable , Codable{
     @DocumentID var id: String?
     var title: String

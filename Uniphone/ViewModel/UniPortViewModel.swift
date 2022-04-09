@@ -1,20 +1,13 @@
-//
-//  UniPortViewModel.swift
-//  Uniphone
-//
-//  Created by Julia Komorowska on 04/04/2022.
-//
-
 import SwiftUI
 import Firebase
 import FirebaseFirestore
-import FirebaseFirestoreSwift
 import FirebaseDatabase
 import Foundation
 class UniPortViewModel: ObservableObject{
     @Published var posts: [Post]?
     @Published var alertMsg = ""
     @Published var showalert = false
+    @Published var createPost = false
     func fetchPosts()async{
         do{
             let db = Firestore.firestore().collection("UniPort")
@@ -27,6 +20,13 @@ class UniPortViewModel: ObservableObject{
             alertMsg = error.localizedDescription
             showalert.toggle()
         }
+    }
+    func deletePost(post: Post){
+        guard let _ = posts else{return}
+        let index = posts?.firstIndex(where: {
+            currentPost in return currentPost.id == post.id
+        }) ?? 0
+        withAnimation{posts?.remove(at: index)}
     }
 }
 

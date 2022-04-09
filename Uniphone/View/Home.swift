@@ -1,4 +1,4 @@
-//
+
 //  Home.swift
 //  Uniphone
 //
@@ -31,7 +31,7 @@ struct Home: View {
                     //Swipe do usuniecia
                         .swipeActions(edge: .trailing, allowsFullSwipe: true){
                             Button(role: .destructive){
-                                
+                                uniPortData.deletePost(post: post)
                             } label:{
                             Image(systemName: "trash")
                             }}
@@ -44,6 +44,7 @@ struct Home: View {
         }
         .navigationTitle("UniPort").frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
             Button(action: {
+                uniPortData.createPost.toggle()
                 
             }, label: {
                 Image(systemName: "plus").font(.title2.bold()).foregroundColor(scheme == .dark ? Color.black : Color.white).padding().background(.primary, in: Circle())})
@@ -52,7 +53,10 @@ struct Home: View {
         .task {
             await uniPortData.fetchPosts()
             
-        }.alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
+        }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
+            
+        })
+        .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
         }
     }
