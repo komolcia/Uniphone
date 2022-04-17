@@ -66,7 +66,16 @@ struct Home: View {
             Text(post.title).fontWeight(.bold)
             Text("Written By: \(post.author)").font(.callout).foregroundColor(.gray)
       
-            Text("Written By: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            ForEach(post.postContent){ content in
+                if content.type == .Image{
+                    
+                }
+                else{
+                    Text(content.value).font(.system(size: getFontSize(type: content.type)))
+                }
+            }
+            Text("Written: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            
 
         }
     }

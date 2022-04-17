@@ -4,14 +4,17 @@
 //
 //  Created by Julia Komorowska on 05/04/2022.
 //
-
+import FirebaseStorage
+import Firebase
 import SwiftUI
+
 
 struct PostView: View {
     @EnvironmentObject var uniportData : UniPortViewModel
     @State var postTitle = ""
     @State var authorName = ""
     @State var postContent : [PostContent] = []
+    private let storage = Storage.storage().reference()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
     @State private var isImagePickerDisplay = false
@@ -33,6 +36,9 @@ struct PostView: View {
                         
                         VStack{
                             if content.type == .Image {
+                            
+                                
+                                
                                             VStack {
                                                 
                                                 if selectedImage != nil {
@@ -40,6 +46,10 @@ struct PostView: View {
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fit)
                                                         .frame(width: 300, height: 300)
+                                                    
+                                                  
+                                                 
+                                                    
                                                 } else {
                                                 
                                                 Button("Camera") {
@@ -56,21 +66,31 @@ struct PostView: View {
                                             .sheet(isPresented: self.$isImagePickerDisplay) {
                                                 ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
                                             }
+                               
+                                            
+                                            
                                 
                                 } else{
                                 TextView(text: $content.value, height: $content.height, fontSize: getFontSize(type: content.type)).frame(height: content.height == 0 ? getFontSize(type: content.type) * 2: content.height).background(
                                     Text(content.type.rawValue).font(.system(size: getFontSize(type: content.type))).foregroundColor(.gray).opacity(content.value == "" ? 0.7 : 0).padding(.leading,5),alignment: .leading)
                             }
                         }
+                 
+                        
                       
                     }
                 Menu {
                     ForEach(PostType.allCases,id: \.rawValue){
-                        type in Button(type.rawValue){
-                            withAnimation{
-                                postContent.append(PostContent(value: "", type: type))
-                            }
+                            type in Button(type.rawValue){
+                                 withAnimation{
+                                 
+                                     postContent.append(PostContent(value: "", type: type))
+                                 }
+                            
                         }
+                       
+                        
+                        
                     }
                 }label: {
                     Image(systemName: "plus.circle.fill").font(.title2).foregroundStyle(.primary)
@@ -84,6 +104,7 @@ struct PostView: View {
                     
                     }
                 }
+               
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button("Post"){
                         uniportData.writePost(content: postContent, author: authorName, postTitle: postTitle)
@@ -92,8 +113,13 @@ struct PostView: View {
                     }
                 }
             }
+            
         }
      }
+    func persistImageToStorage(){
+        
+        
+    }
 }
 
 struct PostView_Previews: PreviewProvider {
@@ -113,3 +139,25 @@ func getFontSize(type: PostType)->CGFloat{
         return 18
     }
 }
+
+private func persistImageToStorage() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
+        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
+        guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
+        ref.putData(imageData, metadata: nil) { metadata, err in
+            if let err = err {
+                self.loginStatusMessage = "Failed to push image to Storage: \(err)"
+                return
+            }
+
+            ref.downloadURL { url, err in
+                if let err = err {
+                    self.loginStatusMessage = "Failed to retrieve downloadURL: \(err)"
+                    return
+                }
+
+                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
+                print(url?.absoluteString)
+            }
+        }
+    }
