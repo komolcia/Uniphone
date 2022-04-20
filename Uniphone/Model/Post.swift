@@ -37,8 +37,7 @@ struct PostContent:Identifiable,Codable{
     }
 }
 enum PostType: String,CaseIterable,Codable{
-    case header = "Header"
-    case subheading = "Subheading"
+    case LargerParagraph = "LargerParagraph"
     case Paragraph = "Paragraph"
     case Image = "Image"
 }

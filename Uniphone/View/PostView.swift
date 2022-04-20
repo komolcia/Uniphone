@@ -7,6 +7,9 @@
 import FirebaseStorage
 import Firebase
 import SwiftUI
+class StorageManager: ObservableObject {
+    let storage = Storage.storage()
+}
 
 
 struct PostView: View {
@@ -17,6 +20,7 @@ struct PostView: View {
     private let storage = Storage.storage().reference()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
+   
     @State private var isImagePickerDisplay = false
     var body: some View {
         NavigationView{
@@ -42,30 +46,43 @@ struct PostView: View {
                                             VStack {
                                                 
                                                 if selectedImage != nil {
+                                                  
+                                                  
                                                     Image(uiImage: selectedImage!)
                                                         .resizable()
                                                         .aspectRatio(contentMode: .fit)
                                                         .frame(width: 300, height: 300)
                                                     
-                                                  
+                                                    
+                                                    
                                                  
                                                     
                                                 } else {
                                                 
-                                                Button("Camera") {
-                                                    self.sourceType = .camera
-                                                    self.isImagePickerDisplay.toggle()
-                                                }.padding()
-                                                
-                                                Button("photo") {
+                                             
+                                                Button(action: {
                                                     self.sourceType = .photoLibrary
                                                     self.isImagePickerDisplay.toggle()
-                                                }.padding()
+                                                    let mystrin = "\(UUID().uuidString)"
+                                                    content.value = mystrin
+                                                    Singleton.sharedInstance.imageString = mystrin
+                                                }, label: {
+                                                    Text("Photo").fontWeight(.bold)})
                                                 }
+                                                
+                                                
+                                                    
+                                                
+                                                
                                             }
                                             .sheet(isPresented: self.$isImagePickerDisplay) {
                                                 ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+                                                
                                             }
+                                
+                                            
+                                 
+                                
                                
                                             
                                             
@@ -84,7 +101,7 @@ struct PostView: View {
                             type in Button(type.rawValue){
                                  withAnimation{
                                  
-                                     postContent.append(PostContent(value: "", type: type))
+                                     postContent.append(PostContent(value: "",type: type))
                                  }
                             
                         }
@@ -116,10 +133,7 @@ struct PostView: View {
             
         }
      }
-    func persistImageToStorage(){
-        
-        
-    }
+
 }
 
 struct PostView_Previews: PreviewProvider {
@@ -129,9 +143,7 @@ struct PostView_Previews: PreviewProvider {
 }
 func getFontSize(type: PostType)->CGFloat{
     switch type{
-    case .header:
-        return 24
-    case .subheading:
+    case .LargerParagraph:
         return 22
     case .Paragraph:
         return 18
@@ -140,24 +152,3 @@ func getFontSize(type: PostType)->CGFloat{
     }
 }
 
-private func persistImageToStorage() {
-        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
-        let ref = FirebaseManager.shared.storage.reference(withPath: uid)
-        guard let imageData = self.image?.jpegData(compressionQuality: 0.5) else { return }
-        ref.putData(imageData, metadata: nil) { metadata, err in
-            if let err = err {
-                self.loginStatusMessage = "Failed to push image to Storage: \(err)"
-                return
-            }
-
-            ref.downloadURL { url, err in
-                if let err = err {
-                    self.loginStatusMessage = "Failed to retrieve downloadURL: \(err)"
-                    return
-                }
-
-                self.loginStatusMessage = "Successfully stored image with url: \(url?.absoluteString ?? "")"
-                print(url?.absoluteString)
-            }
-        }
-    }
