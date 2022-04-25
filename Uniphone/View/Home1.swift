@@ -1,8 +1,8 @@
-
-//  Home.swift
+//
+//  Home1.swift
 //  Uniphone
 //
-//  Created by Julia Komorowska on 04/04/2022.
+//  Created by Julia Komorowska on 25/04/2022.
 //
 
 import SwiftUI
@@ -10,8 +10,8 @@ import FirebaseStorage
 import Firebase
 import SDWebImageSwiftUI
 
-struct Home: View {
-    @StateObject var uniPortData = UniPortViewModel()
+struct Home1: View {
+    @StateObject var uniPortData = UniPortViewModel1()
     @Environment(\.colorScheme) var scheme//kolorki<3
     @State var url = [String]()
     @State var i = 0
@@ -38,14 +38,10 @@ struct Home: View {
                     //Swipe do usuniecia
                         .swipeActions(edge: .trailing, allowsFullSwipe: true){
                             Button(role: .destructive){
-                                if Auth.auth().currentUser?.email == post.author{
-                                    uniPortData.deletePost(post: post)
-                                    
-                                }
+                                if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
+                                    uniPortData.deletePost(post: post)}
                             } label:{
-                            if Auth.auth().currentUser?.email == post.author{
                             Image(systemName: "trash")
-                                }
                             }}
                     
                 }.listStyle(.insetGrouped)
@@ -54,19 +50,21 @@ struct Home: View {
                 ProgressView()
             }
         }
-        .navigationTitle("UniPort").frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
+        .navigationTitle("Aktualnosci").frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
             Button(action: {
+                if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
                 uniPortData.createPost.toggle()
-                
+                }
             }, label: {
-                Image(systemName: "plus").font(.title2.bold()).foregroundColor(scheme == .dark ? Color.black : Color.white).padding().background(.primary, in: Circle())})
+                if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
+                    Image(systemName: "plus").font(.title2.bold()).foregroundColor(scheme == .dark ? Color.black : Color.white).padding().background(.primary, in: Circle())}})
             .padding().foregroundStyle(.primary) ,alignment: .bottomTrailing
-        )
-        .task {
+        
+        ).task {
             await uniPortData.fetchPosts()
             
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
-            PostView().environmentObject(uniPortData)
+            PostView1().environmentObject(uniPortData)
         })
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
@@ -141,9 +139,9 @@ func downloadimagefromfirebase(mystring: String)->String{
         return ""
     }
 }
-struct Home_Previews: PreviewProvider {
+struct Home1_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView1()
            
     }
 }
@@ -189,3 +187,4 @@ struct Loader : UIViewRepresentable{
     }
 }
 }
+

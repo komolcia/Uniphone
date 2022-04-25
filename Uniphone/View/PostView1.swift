@@ -1,21 +1,19 @@
 //
-//  PostView.swift
+//  PostView11.swift
 //  Uniphone
 //
-//  Created by Julia Komorowska on 05/04/2022.
+//  Created by Julia Komorowska on 25/04/2022.
 //
+
 import FirebaseStorage
 import Firebase
 import SwiftUI
-class StorageManager: ObservableObject {
-    let storage = Storage.storage()
-}
 
 
-struct PostView: View {
-    @EnvironmentObject var uniportData : UniPortViewModel
+struct PostView1: View {
+    @EnvironmentObject var uniportData : UniPortViewModel1
     @State var postTitle = ""
-    @State var authorName = Auth.auth().currentUser?.email
+    @State var authorName = ""
     @State var postContent : [PostContent] = []
     private let storage = Storage.storage().reference()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
@@ -32,7 +30,7 @@ struct PostView: View {
                     }
                     VStack(alignment: .leading,spacing: 11){
                         Text("Author:").font(.caption.bold())
-                        Text(authorName!).font(.caption.italic())
+                        TextField("Me", text: $authorName)
                         Divider()
                     }
                 .padding(.top,5).padding(.bottom,20)
@@ -120,7 +118,7 @@ struct PostView: View {
                
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button("Post"){
-                        uniportData.writePost(content: postContent, author: authorName!, postTitle: postTitle)
+                        uniportData.writePost(content: postContent, author: authorName, postTitle: postTitle)
                         
                         
                     }
@@ -132,19 +130,11 @@ struct PostView: View {
 
 }
 
-struct PostView_Previews: PreviewProvider {
+struct PostView1_Previews: PreviewProvider {
     static var previews: some View {
-        PostView()
+        PostView1()
     }
 }
-func getFontSize(type: PostType)->CGFloat{
-    switch type{
-    case .LargerParagraph:
-        return 22
-    case .Paragraph:
-        return 18
-    case .Image:
-        return 18
-    }
-}
+
+
 

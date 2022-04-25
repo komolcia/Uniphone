@@ -2,6 +2,7 @@ import UIKit
 import SwiftUI
 import Firebase
 import FirebaseStorage
+
 var imagestring = ""
 class Singleton {
     var imageString :String?
@@ -69,11 +70,22 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
              
                    
                     imagenode.putData(image.pngData()!)
-                    
+                    @StateObject var uniPortData = UniPortViewModel()
+                    /*
+                    if let posts = uniPortData.posts{
+                        if posts.isEmpty{
                         
+                        }
+                        else{
+                            List(posts){post in
+                                ForEach(post.$postContent){$content in
+                                
+                        }}
                 
-        }
+                            }
            
+                        }*/
+                }
 }
 
 

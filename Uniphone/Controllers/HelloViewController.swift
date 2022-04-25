@@ -27,6 +27,11 @@ class HelloViewController: UIViewController {
         return UIHostingController(coder: coder, rootView: ContentView())
         
     }
+    
+    @IBSegueAction func Seque1(_ coder: NSCoder) -> UIViewController? {
+        return UIHostingController(coder: coder, rootView: ContentView1())
+    }
+    
     var menuOut = false
     @IBAction func menuTapped(_ sender: Any) {
         if menuOut == false {
