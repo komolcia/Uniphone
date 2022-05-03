@@ -1,5 +1,5 @@
 //
-//  TextView1.swift
+//  TextViewNews.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TextView1: UIViewRepresentable {
+struct TextViewNews: UIViewRepresentable {
     func makeCoordinator() -> Coordinator {
-        return TextView1.Coordinator(parent: self)
+        return TextViewNews.Coordinator(parent: self)
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
@@ -29,8 +29,8 @@ struct TextView1: UIViewRepresentable {
         return view
     }
     class Coordinator : NSObject,UITextViewDelegate{
-        var parent: TextView1
-        init(parent: TextView1){
+        var parent: TextViewNews
+        init(parent: TextViewNews){
             self.parent = parent
             
         }

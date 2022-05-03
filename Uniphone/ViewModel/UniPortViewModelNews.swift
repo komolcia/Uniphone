@@ -1,9 +1,9 @@
 //
-//  UniPortViewModel1.swift
+//  UniniPortViewModelNews.swift
 //  Uniphone
 //
 //
-//  UniPOrtViewModel1.swift
+//  UniniPortViewModelNews.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
@@ -13,7 +13,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseDatabase
 import Foundation
-class UniPortViewModel1: ObservableObject{
+class UniPortViewModelNews: ObservableObject{
     @Published var posts: [Post]?
     @Published var alertMsg = ""
     @Published var showalert = false

@@ -10,16 +10,13 @@ class HelloViewController: UIViewController {
     @IBOutlet weak var trailing1: NSLayoutConstraint!
     @IBOutlet weak var leading: NSLayoutConstraint!
     @IBOutlet weak var traling: NSLayoutConstraint!
-    let v = UIHostingController(rootView: ContentView())
-    @IBAction func ifUniPortPressed(_ sender: UIButton) {
-     navigationController?.pushViewController(v, animated: true)
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor.systemOrange.cgColor,UIColor.systemPink.cgColor, UIColor.purple.cgColor]
+        gradientLayer.colors = [UIColor(red: 0.74, green: 0.41, blue: 0.32, alpha: 1.00).cgColor,UIColor(red: 0.33, green: 0.07, blue: 0.31, alpha: 1.00).cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         leading1.constant=0
         trailing1.constant=0    }
@@ -29,7 +26,7 @@ class HelloViewController: UIViewController {
     }
     
     @IBSegueAction func Seque1(_ coder: NSCoder) -> UIViewController? {
-        return UIHostingController(coder: coder, rootView: ContentView1())
+        return UIHostingController(coder: coder, rootView: ContentViewNews())
     }
     
     var menuOut = false

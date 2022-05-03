@@ -9,13 +9,13 @@
 import SwiftUI
 import Firebase
 
-struct UniPortApp1: App{
+struct UniPortAppNews: App{
     init(){
         FirebaseApp.configure()
     }
     var body: some Scene{
         WindowGroup{
-            ContentView1()
+            ContentViewNews()
         }
     }
 }

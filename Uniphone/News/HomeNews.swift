@@ -1,5 +1,5 @@
 //
-//  Home1.swift
+//  HomeNews.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
@@ -10,8 +10,8 @@ import FirebaseStorage
 import Firebase
 import SDWebImageSwiftUI
 
-struct Home1: View {
-    @StateObject var uniPortData = UniPortViewModel1()
+struct HomeNews: View {
+    @StateObject var uniPortData = UniPortViewModelNews()
     @Environment(\.colorScheme) var scheme//kolorki<3
     @State var url = [String]()
     @State var i = 0
@@ -24,7 +24,7 @@ struct Home1: View {
                     (
                     Text(Image(systemName: "rectangle.and.pencil.and.ellipsis"))
                     +
-                    Text("Start Writing on UniPort")
+                    Text("Aktualności")
                     )
                     .font(.title).fontWeight(.semibold)
                     .foregroundColor(.primary)
@@ -64,7 +64,7 @@ struct Home1: View {
             await uniPortData.fetchPosts()
             
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
-            PostView1().environmentObject(uniPortData)
+            PostViewNews().environmentObject(uniPortData)
         })
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
@@ -139,9 +139,9 @@ func downloadimagefromfirebase(mystring: String)->String{
         return ""
     }
 }
-struct Home1_Previews: PreviewProvider {
+struct HomeNews_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView1()
+        ContentViewNews()
            
     }
 }

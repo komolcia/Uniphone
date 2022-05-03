@@ -1,5 +1,5 @@
 //
-//  ContentView1.swift
+//  ContentViewNews.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct ContentView1: View {
+struct ContentViewNews: View {
     var body: some View {
         NavigationView{
-            Home1()
+            HomeNews()
         }
     }
 }
 
-struct ContentView1_Previews: PreviewProvider {
+struct ContentViewNews_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView1()
+        ContentViewNews()
     }
 }

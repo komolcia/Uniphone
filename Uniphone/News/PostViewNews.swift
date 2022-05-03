@@ -1,5 +1,5 @@
 //
-//  PostView11.swift
+//  PostViewNews1.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
@@ -10,8 +10,8 @@ import Firebase
 import SwiftUI
 
 
-struct PostView1: View {
-    @EnvironmentObject var uniportData : UniPortViewModel1
+struct PostViewNews: View {
+    @EnvironmentObject var uniportData : UniPortViewModelNews
     @State var postTitle = ""
     @State var authorName = ""
     @State var postContent : [PostContent] = []
@@ -130,9 +130,9 @@ struct PostView1: View {
 
 }
 
-struct PostView1_Previews: PreviewProvider {
+struct PostViewNews_Previews: PreviewProvider {
     static var previews: some View {
-        PostView1()
+        PostViewNews()
     }
 }
 
