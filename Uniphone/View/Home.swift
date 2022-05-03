@@ -11,7 +11,9 @@ import Firebase
 import SDWebImageSwiftUI
 
 struct Home: View {
+    @Environment(\.defaultMinListRowHeight) var minRowHeight
     @StateObject var uniPortData = UniPortViewModel()
+    @StateObject var uniPortComments = UniPortComment()
     @Environment(\.colorScheme) var scheme//kolorki<3
     @State var url = [String]()
     @State var i = 0
@@ -48,6 +50,7 @@ struct Home: View {
                                 }
                             }}
                     
+                    
                 }.listStyle(.insetGrouped)
             }
             }else{
@@ -64,10 +67,16 @@ struct Home: View {
         )
         .task {
             await uniPortData.fetchPosts()
+            await uniPortComments.fetchPosts()
             
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
             PostView().environmentObject(uniPortData)
+        }).fullScreenCover(isPresented: $uniPortComments.createPost,content: {
+            CommentView().environmentObject(uniPortComments)
         })
+        .alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
+            
+        }
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
         }
@@ -75,7 +84,7 @@ struct Home: View {
     
     @ViewBuilder
     func CardView(post: Post)->some View{
-        VStack(alignment: .leading, spacing: 100){
+        VStack(alignment: .leading, spacing: 10){
             Text(post.title).fontWeight(.bold)
             Text("Written By: \(post.author)").font(.callout).foregroundColor(.gray)
       
@@ -99,12 +108,50 @@ struct Home: View {
                 }
             }
             Text("Written: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            Button(action: {
+                uniPortComments.createPost.toggle()
+                
+            }, label: {
+                Text("Dodaj Komentarz")})
+            .padding().foregroundStyle(.primary)
+        
             
-
+            if let posts1 = uniPortComments.posts {
+                if posts1.isEmpty{
+                    
+                }else{
+                List(posts1){ comment in
+                   
+                          CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
+                                Button(role: .destructive){
+                                    if Auth.auth().currentUser?.email == comment.author{
+                                        uniPortComments.deleteComment(post: comment)
+                                        
+                                    }
+                                } label:{
+                                if Auth.auth().currentUser?.email == post.author{
+                                Image(systemName: "trash")
+                                    }
+                                }}}.frame(minHeight: minRowHeight * 3).border(Color.red)
+                        
+                    .listStyle(.insetGrouped)
+                }
+                
+            }
         }.onAppear{
             if czyJest == "jest"{
                 self.i += 1}}
+                   
     }
+@ViewBuilder
+func CommentsView(comment: Comment)->some View{
+    VStack(alignment: .trailing, spacing: 10){
+        Text("Written By: \(comment.author)").font(.callout).foregroundColor(.black)
+        Text(comment.comment).fontWeight(.bold).font(.caption.bold()).font(.system(size: 22))
+    }.onAppear{
+        print("Zobaczmy czy dziala")
+    }
+}
 
 func downloadimagefromfirebase(mystring: String)->String{
    @State var myurl : String

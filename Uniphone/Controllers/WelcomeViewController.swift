@@ -22,7 +22,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
-        let letterText="Uniphone"
+        let letterText="niphone"
         var indexchar=0.0
         for letter in letterText{
             Timer.scheduledTimer(withTimeInterval: 0.2 * indexchar, repeats: false){

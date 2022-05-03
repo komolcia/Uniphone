@@ -1,30 +1,22 @@
 //
-//  UniPortViewModel1.swift
+//  UniPortComment.swift
 //  Uniphone
-//
-//
-//  UniPOrtViewModel1.swift
-//  Uniphone
-//
-//  Created by Julia Komorowska on 25/04/2022.
-//
 import SwiftUI
 import Firebase
 import FirebaseFirestore
 import FirebaseDatabase
-import Foundation
-class UniPortViewModel1: ObservableObject{
-    @Published var posts: [Post]?
+class UniPortComment: ObservableObject{
+    @Published var posts: [Comment]?
     @Published var alertMsg = ""
     @Published var showalert = false
     @Published var createPost = false
     @Published var isWriting = false
     func fetchPosts()async{
         do{
-            let db = Firestore.firestore().collection("UniPortAktualnosci")
+            let db = Firestore.firestore().collection("Komentarz")
             let posts = try await db.getDocuments()
             self.posts = posts.documents.compactMap({post in
-                return try? post.data(as: Post.self)
+                return try? post.data(as: Comment.self)
             })
             
         }catch{
@@ -32,22 +24,22 @@ class UniPortViewModel1: ObservableObject{
             showalert.toggle()
         }
     }
-    func deletePost(post: Post){
+    func deleteComment(post: Comment){
         guard let _ = posts else{return}
         let index = posts?.firstIndex(where: {
             currentPost in return currentPost.id == post.id
         }) ?? 0
         withAnimation{posts?.remove(at: index)}
     }
-    func writePost(content: [PostContent],author: String, postTitle: String){
+    func writePost(author: String, comment:String,idPost: String){
         do{
             withAnimation{
                 isWriting = true
                 
             }
         
-            let post =     Post(title: postTitle, author: author, postContent: content, date: Timestamp(date: Date()))
-            let _ = try Firestore.firestore().collection("UniPortAktualnosci").document().setData(from: post)
+            let post =     Comment(comment: comment, author: author, idPost: idPost)
+            let _ = try Firestore.firestore().collection("Komentarz").document().setData(from: post)
             withAnimation{
                 posts?.append(post)
                 isWriting = true
@@ -58,3 +50,5 @@ class UniPortViewModel1: ObservableObject{
         }
     }
 }
+
+

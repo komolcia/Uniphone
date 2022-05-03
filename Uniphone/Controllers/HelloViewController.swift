@@ -19,7 +19,7 @@ class HelloViewController: UIViewController {
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [ UIColor(red: 0.31, green: 0.60, blue: 0.27, alpha: 1.00),UIColor(red: 0.31, green: 0.70, blue: 0.30, alpha: 1.00), UIColor(red: 0.40, green: 0.80, blue: 0.27, alpha: 1.00)]
+        gradientLayer.colors = [UIColor.systemOrange.cgColor,UIColor.systemPink.cgColor, UIColor.purple.cgColor]
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         leading1.constant=0
         trailing1.constant=0    }

@@ -21,8 +21,7 @@ struct Post: Identifiable , Codable{
         case postContent
         case date
         
-    }
-    
+    }    
 }
 struct PostContent:Identifiable,Codable{
     var id=UUID().uuidString

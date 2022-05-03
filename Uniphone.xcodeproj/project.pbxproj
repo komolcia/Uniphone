@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E176EC628201B5600E2122D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E176EC528201B5600E2122D /* Comment.swift */; };
+		7E176EC828201BE400E2122D /* UniPortComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E176EC728201BE400E2122D /* UniPortComment.swift */; };
+		7E176ECA2820209900E2122D /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E176EC92820209900E2122D /* CommentView.swift */; };
 		7E5AB4EF280F6CCB009B7115 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7E5AB4EE280F6CCB009B7115 /* SDWebImageSwiftUI */; };
 		7E6FA5932801C35B002DD295 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FA5922801C35B002DD295 /* PostView.swift */; };
 		7E6FA5952801CE09002DD295 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6FA5942801CE09002DD295 /* TextView.swift */; };
@@ -64,6 +67,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E176EC528201B5600E2122D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		7E176EC728201BE400E2122D /* UniPortComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniPortComment.swift; sourceTree = "<group>"; };
+		7E176EC92820209900E2122D /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		7E6FA5922801C35B002DD295 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		7E6FA5942801CE09002DD295 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		7E6FA5972801D514002DD295 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
@@ -153,6 +159,7 @@
 				7EDEA09D2816EF4B00523307 /* UniPortApp1.swift */,
 				7EDEA09F2816EF7D00523307 /* ContentView1.swift */,
 				7EDEA0A12816EFA300523307 /* Home1.swift */,
+				7E176EC92820209900E2122D /* CommentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -162,6 +169,7 @@
 			children = (
 				7E70EACC27FB83C200DCE613 /* UniPortViewModel.swift */,
 				7EDEA0A52816F94300523307 /* UniPortViewModel1.swift */,
+				7E176EC728201BE400E2122D /* UniPortComment.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -170,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7E70EACF27FB83F300DCE613 /* Post.swift */,
+				7E176EC528201B5600E2122D /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +416,8 @@
 				7EDEA09C2816EE6A00523307 /* PostView1.swift in Sources */,
 				7E6FA5982801D514002DD295 /* ImagePickerView.swift in Sources */,
 				7EBA416027E882AC00F43F3F /* LoginViewController.swift in Sources */,
+				7E176EC828201BE400E2122D /* UniPortComment.swift in Sources */,
+				7E176EC628201B5600E2122D /* Comment.swift in Sources */,
 				7EBA416227E882C800F43F3F /* RegisterViewController.swift in Sources */,
 				7EB8A4F427DB5CB800940803 /* WelcomeViewController.swift in Sources */,
 				7EBA416427E882D800F43F3F /* HelloViewController.swift in Sources */,
@@ -414,6 +425,7 @@
 				7EB8A4F027DB5CB800940803 /* AppDelegate.swift in Sources */,
 				7EDEA0A62816F94300523307 /* UniPortViewModel1.swift in Sources */,
 				7EDEA09A2816EE2700523307 /* TextView1.swift in Sources */,
+				7E176ECA2820209900E2122D /* CommentView.swift in Sources */,
 				7E70EAD227FC850E00DCE613 /* UniPortApp.swift in Sources */,
 				7EDEA0A22816EFA300523307 /* Home1.swift in Sources */,
 				7E70EAC927FB7B6D00DCE613 /* Home.swift in Sources */,
