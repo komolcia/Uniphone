@@ -49,6 +49,8 @@
 		7EEECD4B2821432B00C5B587 /* TextViewNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEECD462821432B00C5B587 /* TextViewNews.swift */; };
 		7EEECD4D282153F300C5B587 /* pisanie.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7EEECD4C2821507900C5B587 /* pisanie.m4a */; };
 		7EEECD4F2821546D00C5B587 /* pisanie1sek.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7EEECD4E2821546000C5B587 /* pisanie1sek.m4a */; };
+		7EEECD512821820F00C5B587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEECD502821820F00C5B587 /* ProfileViewController.swift */; };
+		7EEECD532821898500C5B587 /* ProfileViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEECD522821898500C5B587 /* ProfileViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,8 @@
 		7EEECD462821432B00C5B587 /* TextViewNews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewNews.swift; sourceTree = "<group>"; };
 		7EEECD4C2821507900C5B587 /* pisanie.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = pisanie.m4a; sourceTree = "<group>"; };
 		7EEECD4E2821546000C5B587 /* pisanie1sek.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = pisanie1sek.m4a; sourceTree = "<group>"; };
+		7EEECD502821820F00C5B587 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7EEECD522821898500C5B587 /* ProfileViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +273,8 @@
 				7EBA415F27E882AC00F43F3F /* LoginViewController.swift */,
 				7EBA416127E882C800F43F3F /* RegisterViewController.swift */,
 				7EBA416327E882D800F43F3F /* HelloViewController.swift */,
+				7EEECD502821820F00C5B587 /* ProfileViewController.swift */,
+				7EEECD522821898500C5B587 /* ProfileViewController2.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -453,6 +459,8 @@
 				7E70EAD227FC850E00DCE613 /* UniPortApp.swift in Sources */,
 				7EEECD4B2821432B00C5B587 /* TextViewNews.swift in Sources */,
 				7E70EAC927FB7B6D00DCE613 /* Home.swift in Sources */,
+				7EEECD512821820F00C5B587 /* ProfileViewController.swift in Sources */,
+				7EEECD532821898500C5B587 /* ProfileViewController2.swift in Sources */,
 				7E6FA5932801C35B002DD295 /* PostView.swift in Sources */,
 				7EB8A4F227DB5CB800940803 /* SceneDelegate.swift in Sources */,
 			);

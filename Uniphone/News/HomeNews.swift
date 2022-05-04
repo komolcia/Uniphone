@@ -49,18 +49,25 @@ struct HomeNews: View {
             }else{
                 ProgressView()
             }
-        }
-        .navigationTitle("Aktualnosci").frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
-            Button(action: {
-                if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
-                uniPortData.createPost.toggle()
-                }
-            }, label: {
-                if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
-                    Image(systemName: "plus").font(.title2.bold()).foregroundColor(scheme == .dark ? Color.black : Color.white).padding().background(.primary, in: Circle())}})
-            .padding().foregroundStyle(.primary) ,alignment: .bottomTrailing
-        
-        ).task {
+        }.navigationBarTitle("Aktualnosci" , displayMode: .inline)
+            .frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
+                Button(action: {
+                    uniPortData.createPost.toggle()
+                    
+                }, label: {
+                    Image(systemName: "plus").font(.title2.bold()).foregroundColor(.white).padding().background(Color(UIColor(red: 0.74, green: 0.41, blue: 0.32, alpha: 1.00)), in: Circle())})
+                .padding().foregroundStyle(.primary) ,alignment: .bottomTrailing
+            ).onAppear{
+                let appearance = UINavigationBarAppearance()
+                appearance.backgroundImage = UIImage(named: "j")
+                UINavigationBar.appearance().isTranslucent = false
+                UINavigationBar.appearance().standardAppearance=appearance
+                UINavigationBar.appearance().scrollEdgeAppearance = appearance
+               // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
+            
+                 //   UINavigationBar.appearance().backgroundColor=UIColor.purple
+               // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
+            }.task {
             await uniPortData.fetchPosts()
             
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {

@@ -45,7 +45,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Register"/>
+                                        <state key="normal" title="Zarejestruj się">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="keyPath">
                                                 <color key="value" systemColor="systemIndigoColor"/>
@@ -75,7 +77,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Log In"/>
+                                        <state key="normal" title="Zaloguj się"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
                                                 <color key="value" red="0.74117654560000001" green="0.41176474089999998" blue="0.31764706970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -137,17 +139,21 @@
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jt5-Ye-cZB">
                                         <rect key="frame" x="0.0" y="0.0" width="404" height="70"/>
+                                        <color key="backgroundColor" white="0.19090136050000001" alpha="0.72037975990000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="3in-JB-piQ"/>
                                         </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BS6-4R-hi5">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hasło" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BS6-4R-hi5">
                                         <rect key="frame" x="0.0" y="80" width="404" height="70"/>
+                                        <color key="backgroundColor" white="0.19090136050000001" alpha="0.72037975990000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="uIE-dH-QgB"/>
                                         </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
@@ -163,7 +169,7 @@
                                 <rect key="frame" x="30" y="298" width="354" height="69"/>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Register">
+                                <state key="normal" title="Zarejestruj się">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -336,17 +342,63 @@
             </objects>
             <point key="canvasLocation" x="3157.971014492754" y="65.625"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="Bm7-kJ-7ZW">
             <objects>
-                <viewController id="Y93-eB-G7s" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aWu-PH-v04">
+                <viewController id="Y93-eB-G7s" customClass="ProfileViewController" customModule="Uniphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aWu-PH-v04" customClass="P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TgR-5Y-Kxj">
+                                <rect key="frame" x="0.0" y="108" width="414" height="70"/>
+                                <color key="backgroundColor" white="0.19090136050000001" alpha="0.72037975990000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="x3U-MU-DHk"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHT-qU-Iao" customClass="GradientButton" customModule="Uniphone" customModuleProvider="target">
+                                <rect key="frame" x="20" y="188" width="374" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="POl-KV-5yH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Zmień Hasło"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
+                                        <color key="value" red="0.74117654560000001" green="0.41176474089999998" blue="0.31764706970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
+                                        <color key="value" red="0.32549020649999999" green="0.074509806930000005" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Zmienhaslo:" destination="Y93-eB-G7s" eventType="touchUpInside" id="Blp-9c-kqV"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="tNs-Bd-RN1"/>
-                        <color key="backgroundColor" red="0.36509168148040771" green="0.55957543849945068" blue="0.90695875883102417" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="sHT-qU-Iao" firstAttribute="top" secondItem="TgR-5Y-Kxj" secondAttribute="bottom" constant="10" id="1LD-uV-g3X"/>
+                            <constraint firstItem="TgR-5Y-Kxj" firstAttribute="leading" secondItem="aWu-PH-v04" secondAttribute="leading" id="1mw-uq-eip"/>
+                            <constraint firstItem="sHT-qU-Iao" firstAttribute="leading" secondItem="aWu-PH-v04" secondAttribute="leading" constant="20" id="BZT-oU-jB8"/>
+                            <constraint firstItem="TgR-5Y-Kxj" firstAttribute="top" secondItem="tNs-Bd-RN1" secondAttribute="top" constant="20" id="FIe-w8-8of"/>
+                            <constraint firstItem="tNs-Bd-RN1" firstAttribute="trailing" secondItem="sHT-qU-Iao" secondAttribute="trailing" constant="20" id="ZxB-cx-8c7"/>
+                            <constraint firstItem="tNs-Bd-RN1" firstAttribute="trailing" secondItem="TgR-5Y-Kxj" secondAttribute="trailing" id="dpg-Rw-o6p"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aUc-L7-amT"/>
+                    <connections>
+                        <outlet property="email" destination="TgR-5Y-Kxj" id="huW-kq-oz6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UKt-pi-UKo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -369,17 +421,21 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bH4-zR-4iF">
                                                 <rect key="frame" x="0.0" y="0.0" width="404" height="70"/>
+                                                <color key="backgroundColor" white="0.19090136054421769" alpha="0.72037975993377479" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="eNw-5m-wZX"/>
                                                 </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Gl-gl-YPQ">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hasło" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Gl-gl-YPQ">
                                                 <rect key="frame" x="0.0" y="80" width="404" height="70"/>
+                                                <color key="backgroundColor" white="0.19090136050000001" alpha="0.72037975990000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="70" id="hTf-pn-na0"/>
                                                 </constraints>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
@@ -395,7 +451,7 @@
                                         <rect key="frame" x="30" y="298" width="354" height="69"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Log In">
+                                        <state key="normal" title="Zaloguj się">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -419,6 +475,16 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bT-EW-nom">
+                                        <rect key="frame" x="10" y="377" width="394" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Zapomniałem/am hasła">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="tw4-9v-u3I" kind="show" id="iJH-XT-5an"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="bmw-HG-heJ"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -426,11 +492,14 @@
                                     <constraint firstItem="CZ2-Ng-ZuL" firstAttribute="leading" secondItem="bmw-HG-heJ" secondAttribute="leading" constant="30" id="1hg-BT-naS"/>
                                     <constraint firstItem="bmw-HG-heJ" firstAttribute="trailing" secondItem="p3b-Bc-rOu" secondAttribute="trailing" constant="5" id="1xu-hU-yTV"/>
                                     <constraint firstItem="bmw-HG-heJ" firstAttribute="trailing" secondItem="CZ2-Ng-ZuL" secondAttribute="trailing" constant="30" id="B8D-FQ-jdM"/>
+                                    <constraint firstItem="6bT-EW-nom" firstAttribute="leading" secondItem="bmw-HG-heJ" secondAttribute="leading" constant="10" id="FIn-zn-W2k"/>
                                     <constraint firstItem="CZ2-Ng-ZuL" firstAttribute="top" secondItem="p3b-Bc-rOu" secondAttribute="bottom" constant="20" id="Svf-8u-TEQ"/>
+                                    <constraint firstItem="6bT-EW-nom" firstAttribute="top" secondItem="CZ2-Ng-ZuL" secondAttribute="bottom" constant="10" id="UC0-8g-YWc"/>
                                     <constraint firstItem="ojF-NH-f3E" firstAttribute="leading" secondItem="bmw-HG-heJ" secondAttribute="leading" constant="10" id="deQ-AM-6aa"/>
                                     <constraint firstItem="ojF-NH-f3E" firstAttribute="top" secondItem="CZ2-Ng-ZuL" secondAttribute="bottom" id="g5B-Nl-4av"/>
                                     <constraint firstItem="p3b-Bc-rOu" firstAttribute="top" secondItem="bmw-HG-heJ" secondAttribute="top" constant="40" id="iMw-t9-B2I"/>
                                     <constraint firstItem="p3b-Bc-rOu" firstAttribute="leading" secondItem="bmw-HG-heJ" secondAttribute="leading" constant="5" id="ic8-55-rEA"/>
+                                    <constraint firstItem="bmw-HG-heJ" firstAttribute="trailing" secondItem="6bT-EW-nom" secondAttribute="trailing" constant="10" id="jkY-rc-GAD"/>
                                     <constraint firstItem="bmw-HG-heJ" firstAttribute="trailing" secondItem="ojF-NH-f3E" secondAttribute="trailing" constant="10" id="wlN-m0-YTa"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -498,23 +567,91 @@
             </objects>
             <point key="canvasLocation" x="4055" y="-656"/>
         </scene>
+        <!--Profile View Controller2-->
+        <scene sceneID="UGd-wr-Vp8">
+            <objects>
+                <viewController id="tw4-9v-u3I" customClass="ProfileViewController2" customModule="Uniphone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ucn-m5-sId" customClass="P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OsE-e7-Fdz">
+                                <rect key="frame" x="0.0" y="108" width="414" height="70"/>
+                                <color key="backgroundColor" white="0.19090136050000001" alpha="0.72037975990000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Jmb-GB-d5q"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0v-KS-abl" customClass="GradientButton" customModule="Uniphone" customModuleProvider="target">
+                                <rect key="frame" x="20" y="188" width="374" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="hBo-h6-1zo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="40"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Zmień Hasło"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
+                                        <color key="value" red="0.74117654560000001" green="0.41176474089999998" blue="0.31764706970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
+                                        <color key="value" red="0.32549020649999999" green="0.074509806930000005" blue="0.31372550129999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="Zmienhaslo:" destination="tw4-9v-u3I" eventType="touchUpInside" id="cUh-k8-4ls"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rIw-0d-t6L"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rIw-0d-t6L" firstAttribute="trailing" secondItem="OsE-e7-Fdz" secondAttribute="trailing" id="6ZN-Su-XFK"/>
+                            <constraint firstItem="OsE-e7-Fdz" firstAttribute="top" secondItem="rIw-0d-t6L" secondAttribute="top" constant="20" id="M3i-Mf-NfI"/>
+                            <constraint firstItem="OsE-e7-Fdz" firstAttribute="leading" secondItem="Ucn-m5-sId" secondAttribute="leading" id="jca-7o-av0"/>
+                            <constraint firstItem="a0v-KS-abl" firstAttribute="top" secondItem="OsE-e7-Fdz" secondAttribute="bottom" constant="10" id="lN8-4v-xSs"/>
+                            <constraint firstItem="rIw-0d-t6L" firstAttribute="trailing" secondItem="a0v-KS-abl" secondAttribute="trailing" constant="20" id="r8Z-cC-r71"/>
+                            <constraint firstItem="a0v-KS-abl" firstAttribute="leading" secondItem="Ucn-m5-sId" secondAttribute="leading" constant="20" id="y3o-89-8t1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="9GD-eQ-f8p"/>
+                    <connections>
+                        <outlet property="email" destination="OsE-e7-Fdz" id="0Kj-YV-g2Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sIq-eV-ccy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2172" y="1456"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="6Kk-9T-Jn9">
-            <size key="intrinsicContentSize" width="150" height="69"/>
+            <size key="intrinsicContentSize" width="271" height="69"/>
         </designable>
         <designable name="6XZ-2U-hRw">
-            <size key="intrinsicContentSize" width="150" height="69"/>
+            <size key="intrinsicContentSize" width="271" height="69"/>
         </designable>
         <designable name="CZ2-Ng-ZuL">
-            <size key="intrinsicContentSize" width="116" height="69"/>
+            <size key="intrinsicContentSize" width="199" height="69"/>
+        </designable>
+        <designable name="a0v-KS-abl">
+            <size key="intrinsicContentSize" width="219" height="69"/>
+        </designable>
+        <designable name="sHT-qU-Iao">
+            <size key="intrinsicContentSize" width="219" height="69"/>
         </designable>
         <designable name="xyO-gN-2OF">
-            <size key="intrinsicContentSize" width="116" height="69"/>
+            <size key="intrinsicContentSize" width="199" height="69"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="rn3-Ar-oPt"/>
+        <segue reference="0EI-CD-sLd"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>

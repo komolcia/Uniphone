@@ -9,8 +9,8 @@ import SwiftUI
 import FirebaseStorage
 import Firebase
 import SDWebImageSwiftUI
-
 struct Home: View {
+    
     @Environment(\.defaultMinListRowHeight) var minRowHeight
     @StateObject var uniPortData = UniPortViewModel()
     @StateObject var uniPortComments = UniPortComment()
@@ -18,15 +18,16 @@ struct Home: View {
     @State var url = [String]()
     @State var i = 0
     @State var czyJest = ""
-               
+    
     var body: some View {
+        
         VStack{
             if let posts=uniPortData.posts{
                 if posts.isEmpty{
                     (
-                    Text(Image(systemName: "rectangle.and.pencil.and.ellipsis"))
+                    Text(Image(systemName: "pencil.and.outline"))
                     +
-                    Text("Start Writing on UniPort")
+                    Text("UniPort")
                     )
                     .font(.title).fontWeight(.semibold)
                     .foregroundColor(.primary)
@@ -56,44 +57,51 @@ struct Home: View {
             }else{
                 ProgressView()
             }
-        }
-        .navigationTitle("UniPort").frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
+        }.navigationBarTitle("UniPort" , displayMode: .inline)
+        .frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
             Button(action: {
                 uniPortData.createPost.toggle()
                 
             }, label: {
-                Image(systemName: "plus").font(.title2.bold()).foregroundColor(scheme == .dark ? Color.black : Color.white).padding().background(.primary, in: Circle())})
+                Image(systemName: "plus").font(.title2.bold()).foregroundColor(.white).padding().background(Color(UIColor(red: 0.74, green: 0.41, blue: 0.32, alpha: 1.00)), in: Circle())})
             .padding().foregroundStyle(.primary) ,alignment: .bottomTrailing
-        )
+        ).onAppear{
+            let appearance = UINavigationBarAppearance()
+            appearance.backgroundImage = UIImage(named: "j")
+            UINavigationBar.appearance().isTranslucent = false
+            UINavigationBar.appearance().standardAppearance=appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+           // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
+        
+             //   UINavigationBar.appearance().backgroundColor=UIColor.purple
+           // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
+        }
         .task {
             await uniPortData.fetchPosts()
             await uniPortComments.fetchPosts()
             
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
             PostView().environmentObject(uniPortData)
-        }).fullScreenCover(isPresented: $uniPortComments.createPost,content: {
-            CommentView().environmentObject(uniPortComments)
         })
-        .alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
-            
-        }
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
         }
-    }
+              }
     
     @ViewBuilder
     func CardView(post: Post)->some View{
         VStack(alignment: .leading, spacing: 10){
+            
             Text(post.title).fontWeight(.bold)
-            Text("Written By: \(post.author)").font(.callout).foregroundColor(.gray)
+            Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
       
             ForEach(post.postContent){ content in
                 
                 if content.type == .Image{
                     VStack{
                         if downloadimagefromfirebase(mystring: content.value) != "" {
-                            AnimatedImage(url: URL(string: downloadimagefromfirebase(mystring: content.value))!).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()}
+                            WebImage(url: URL(string: downloadimagefromfirebase(mystring: content.value))!).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+                        }
                         else{
                             Loader()
                         }
@@ -107,13 +115,13 @@ struct Home: View {
                     Text(content.value).font(.system(size: getFontSize(type: content.type)))
                 }
             }
-            Text("Written: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
             Button(action: {
                 uniPortComments.createPost.toggle()
                 
             }, label: {
                 Text("Dodaj Komentarz")})
-            .padding().foregroundStyle(.primary)
+            .padding().foregroundStyle(.blue)
         
             
             if let posts1 = uniPortComments.posts {
@@ -121,7 +129,7 @@ struct Home: View {
                     
                 }else{
                 List(posts1){ comment in
-                   
+                    if comment.idPost == post.id {
                           CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
                                 Button(role: .destructive){
                                     if Auth.auth().currentUser?.email == comment.author{
@@ -132,27 +140,44 @@ struct Home: View {
                                 if Auth.auth().currentUser?.email == post.author{
                                 Image(systemName: "trash")
                                     }
-                                }}}.frame(minHeight: minRowHeight * 3).border(Color.red)
+                                }}}}.frame(minHeight: minRowHeight * 3)
                         
-                    .listStyle(.insetGrouped)
+                        .listStyle(.insetGrouped)
                 }
                 
             }
         }.onAppear{
+
+          
+            
             if czyJest == "jest"{
-                self.i += 1}}
+                self.i += 1}}.fullScreenCover(isPresented: $uniPortComments.createPost,content: {
+                    CommentView(idPost: post.id!).environmentObject(uniPortComments)
+                })
+                .alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
+                    
+                }
                    
     }
 @ViewBuilder
 func CommentsView(comment: Comment)->some View{
     VStack(alignment: .trailing, spacing: 10){
-        Text("Written By: \(comment.author)").font(.callout).foregroundColor(.black)
-        Text(comment.comment).fontWeight(.bold).font(.caption.bold()).font(.system(size: 22))
+        Text("Autor: \(comment.author)").font(.system(size:10)).foregroundColor(.black)
+        Text(comment.comment).fontWeight(.bold).font(.system(size:14)).foregroundColor(.black)
     }.onAppear{
         print("Zobaczmy czy dziala")
     }
 }
-
+    func getImageFrom(gradientLayer:CAGradientLayer) -> UIImage? {
+        var gradientImage:UIImage?
+        UIGraphicsBeginImageContext(gradientLayer.frame.size)
+        if let context = UIGraphicsGetCurrentContext() {
+            gradientLayer.render(in: context)
+            gradientImage = UIGraphicsGetImageFromCurrentImageContext()?.resizableImage(withCapInsets: UIEdgeInsets.zero, resizingMode: .stretch)
+        }
+        UIGraphicsEndImageContext()
+        return gradientImage
+    }
 func downloadimagefromfirebase(mystring: String)->String{
    @State var myurl : String
     myurl = ""
@@ -194,7 +219,7 @@ struct Home_Previews: PreviewProvider {
            
     }
 }
-/*func takeimage(){
+/*func takeimage(mystring: String)->String{
     let storage = Storage.storage()
     
     print(mystring)
@@ -210,6 +235,7 @@ struct Home_Previews: PreviewProvider {
       } else {
         
           let image1 = UIImage(data: data!)!
+          self.url.append("\(url!)")
           print("udalo sie")
           
           Image(uiImage: image1)
@@ -220,10 +246,23 @@ struct Home_Previews: PreviewProvider {
         
       }
     }
+    var j = 0
+    if url.indices.contains(i) == true{
+        for string in url {
+            if string.contains(mystring) == true{
+                return url[j]
+            }
+            j += 1
+        }
+       return url[i]
+    }
+    else{
+        return ""
+    }
     
-   return image
-}
- */
+   
+}*/
+ 
 
 struct Loader : UIViewRepresentable{
     func makeUIView(context: UIViewRepresentableContext<Loader>) -> UIActivityIndicatorView {
@@ -235,4 +274,41 @@ struct Loader : UIViewRepresentable{
         
     }
 }
+    final class Loader2 : ObservableObject {
+        @Published var data : Data?
+
+        init(_ id: String){
+            // the path to the image
+            let url = "\(id)"
+            print("load image with id: \(id)")
+            let storage = Storage.storage()
+            let ref = storage.reference().child(url)
+            ref.getData(maxSize: 1 * 1024 * 1024) { data, error in
+                if let error = error {
+                    print("\(error)")
+                }
+
+                DispatchQueue.main.async {
+                    self.data = data
+                }
+            }
+        }
+    }
+    struct FirebaseImage : View {
+ var placeholder = UIImage(named: "j.jpg")
+        init(id: String) {
+            self.imageLoader = Loader2(id)
+        }
+
+        @ObservedObject private var imageLoader : Loader2
+
+        var image: UIImage? {
+            imageLoader.data.flatMap(UIImage.init)
+        }
+
+        var body: some View {
+            Image(uiImage: ((image ) ?? placeholder)!)
+        }
+    }
+
 }
