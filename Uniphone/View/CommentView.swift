@@ -10,10 +10,12 @@ import FirebaseStorage
 import Firebase
 import SwiftUI
 struct CommentView: View {
+   let idPost : String
+
     @EnvironmentObject var uniportComment : UniPortComment
     @State var comment = ""
     @State var authorName = Auth.auth().currentUser?.email
-    @State var idPost = ""
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical,showsIndicators: false,content: {
@@ -52,6 +54,6 @@ struct CommentView: View {
 }
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentView()
+        CommentView(idPost: "")
     }
 }

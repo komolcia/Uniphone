@@ -46,7 +46,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
       func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
           print("Tutaj")
           if let selectedImage = info[.originalImage] as? UIImage{
-                  print("Jesteeemmmmmm")
+                  
                     self.uploadImage(image: selectedImage )
                     self.picker.selectedImage = selectedImage
               Singleton.sharedInstance.imageString = imagestring
@@ -63,28 +63,20 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 {
                     let storage = Storage.storage()
                     let storageref = storage.reference()
-                    
-                
+                    var newSize:CGSize
+                    newSize = CGSize(width: 300.0,height: 300.0)
+                    let rect = CGRect(origin: .zero, size: newSize)
+                    UIGraphicsBeginImageContextWithOptions(newSize,false,1.0)
+                    image.draw(in: rect)
+                    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                    UIGraphicsEndImageContext()
                     print(Singleton.sharedInstance.imageString)
-                    let imagenode = storageref.child(Singleton.sharedInstance.imageString!)
-             
                    
-                    imagenode.putData(image.pngData()!)
-                    @StateObject var uniPortData = UniPortViewModel()
-                    /*
-                    if let posts = uniPortData.posts{
-                        if posts.isEmpty{
-                        
-                        }
-                        else{
-                            List(posts){post in
-                                ForEach(post.$postContent){$content in
-                                
-                        }}
-                
-                            }
-           
-                        }*/
+                    let imagenode = storageref.child(Singleton.sharedInstance.imageString!)
+              
+                   
+                    imagenode.putData(newImage!.pngData()!)
+                   
                 }
 }
 

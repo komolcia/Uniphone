@@ -22,11 +22,14 @@ class UniPortViewModel: ObservableObject{
             showalert.toggle()
         }
     }
+    
+
     func deletePost(post: Post){
         guard let _ = posts else{return}
         let index = posts?.firstIndex(where: {
             currentPost in return currentPost.id == post.id
         }) ?? 0
+        Firestore.firestore().collection("Uniport").document(post.id ?? "").delete()
         withAnimation{posts?.remove(at: index)}
     }
     func writePost(content: [PostContent],author: String, postTitle: String){

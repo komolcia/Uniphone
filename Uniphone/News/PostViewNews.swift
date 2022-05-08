@@ -1,5 +1,5 @@
 //
-//  PostViewNews1.swift
+//  PostViewNewsNews1.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
@@ -7,18 +7,22 @@
 
 import FirebaseStorage
 import Firebase
+import SDWebImageSwiftUI
 import SwiftUI
 
 
+
 struct PostViewNews: View {
-    @EnvironmentObject var uniportData : UniPortViewModelNews
+    @EnvironmentObject var uniportData : UniPortViewModel
     @State var postTitle = ""
-    @State var authorName = ""
+    @State var authorName = Auth.auth().currentUser?.email
     @State var postContent : [PostContent] = []
     private let storage = Storage.storage().reference()
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State private var selectedImage: UIImage?
-   
+    @State var url = [String]()
+    @State var i = 0
+    @State var czyJest = ""
     @State private var isImagePickerDisplay = false
     var body: some View {
         NavigationView{
@@ -30,12 +34,12 @@ struct PostViewNews: View {
                     }
                     VStack(alignment: .leading,spacing: 11){
                         Text("Author:").font(.caption.bold())
-                        TextField("Me", text: $authorName)
+                        Text(authorName!).font(.caption.italic())
                         Divider()
                     }
                 .padding(.top,5).padding(.bottom,20)
                     ForEach($postContent){$content in
-                        
+                         
                         VStack{
                             if content.type == .Image {
                             
@@ -45,17 +49,22 @@ struct PostViewNews: View {
                                                 
                                                 if selectedImage != nil {
                                                   
-                                                  
-                                                    Image(uiImage: selectedImage!)
-                                                        .resizable()
-                                                        .aspectRatio(contentMode: .fit)
-                                                        .frame(width: 300, height: 300)
-                                                    
-                                                    
-                                                    
-                                                 
-                                                    
-                                                } else {
+                                                    if downloadimagefromfirebase(mystring: content.value) != "" {
+                                                        AnimatedImage(url: URL(string: downloadimagefromfirebase(mystring: content.value))!).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding().onAppear{
+                                                            content.value=downloadimagefromfirebase(mystring: content.value)
+                                                            
+                                                                print(content.value)
+                                                                print("Jestem hejka naklejka")
+                                                                
+                                                                         
+                                                                         
+                                                            
+                                                            }
+                                                    }
+                                                    else{
+                                                        Loader()
+                                                    }
+                                                    }else {
                                                 
                                              
                                                 Button(action: {
@@ -64,6 +73,7 @@ struct PostViewNews: View {
                                                     var mystrin = "\(UUID().uuidString)"
                                                     content.value = mystrin
                                                     Singleton.sharedInstance.imageString = mystrin
+                                                   
                                                 }, label: {
                                                     Text("Photo").fontWeight(.bold)})
                                                 }
@@ -77,6 +87,7 @@ struct PostViewNews: View {
 
                                             .sheet(isPresented: self.$isImagePickerDisplay) {
                                                 ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+                                                
                                                 
                                             }
                                             
@@ -110,31 +121,75 @@ struct PostViewNews: View {
                 }.padding()
             }).navigationTitle(postTitle == "" ? "PostTitle": postTitle).navigationBarTitleDisplayMode(.inline).toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
-                    Button("Cancel"){
-                        uniportData.createPost.toggle()
-                    
+                    NavigationLink(destination: HomeNews()) {
+                        Text("Cancel").onTapGesture {
+                                uniportData.createPost.toggle()
+                                
+                            }
                     }
+                   // Button("Cancel"){
+//uniportData.createPost.toggle()
+                  //
+                  //  }
                 }
                
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Button("Post"){
-                        uniportData.writePost(content: postContent, author: authorName, postTitle: postTitle)
-                        
-                        
+                    NavigationLink(destination: HomeNews()) {
+                        Text("Post").onTapGesture{
+                            uniportData.writePost(content: postContent, author: authorName!, postTitle: postTitle)}
                     }
+                    //Button("Post"){
+                     //   uniportData.writePost(content: postContent, author: authorName!, postTitle: postTitle)//
+                   //
+                        
+                   // }
                 }
             }
             
         }
      }
+    func downloadimagefromfirebase(mystring: String)->String{
+       @State var myurl : String
+        myurl = ""
+        self.czyJest = "jest"
+        let storage = Storage.storage().reference()
+       
+            storage.child(mystring).downloadURL{
+                (url,err) in
+                if err != nil{
+                    print((err?.localizedDescription))
+                    print("OOOO nIIIIEEEE")
+                    return
+                }
+             
+                myurl = "\(url!)"
+                
+                
+                self.url.append("\(url!)")
+                
+                
+        }
+        var j = 0
+        if url.indices.contains(i) == true{
+            for string in url {
+                if string.contains(mystring) == true{
+                    return url[j]
+                }
+                j += 1
+            }
+           return url[i]
+        }
+        else{
+            return ""
+        }
+    }
 
 }
+
 
 struct PostViewNews_Previews: PreviewProvider {
     static var previews: some View {
         PostViewNews()
     }
 }
-
-
 

@@ -37,6 +37,7 @@ class UniPortViewModelNews: ObservableObject{
         let index = posts?.firstIndex(where: {
             currentPost in return currentPost.id == post.id
         }) ?? 0
+        Firestore.firestore().collection("UniPortAktualnosci").document(post.id ?? "").delete()
         withAnimation{posts?.remove(at: index)}
     }
     func writePost(content: [PostContent],author: String, postTitle: String){

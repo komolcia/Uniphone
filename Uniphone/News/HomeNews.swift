@@ -88,11 +88,7 @@ struct HomeNews: View {
                 
                 if content.type == .Image{
                     VStack{
-                        if downloadimagefromfirebase(mystring: content.value) != "" {
-                            AnimatedImage(url: URL(string: downloadimagefromfirebase(mystring: content.value))!).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()}
-                        else{
-                            Loader()
-                        }
+                        AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
                     }
                     
 

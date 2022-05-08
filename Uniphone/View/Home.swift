@@ -10,7 +10,6 @@ import FirebaseStorage
 import Firebase
 import SDWebImageSwiftUI
 struct Home: View {
-    
     @Environment(\.defaultMinListRowHeight) var minRowHeight
     @StateObject var uniPortData = UniPortViewModel()
     @StateObject var uniPortComments = UniPortComment()
@@ -71,26 +70,94 @@ struct Home: View {
             UINavigationBar.appearance().isTranslucent = false
             UINavigationBar.appearance().standardAppearance=appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            
            // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
         
              //   UINavigationBar.appearance().backgroundColor=UIColor.purple
            // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
-        }
-        .task {
+        }.task {
             await uniPortData.fetchPosts()
             await uniPortComments.fetchPosts()
-            
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
-            PostView().environmentObject(uniPortData)
+            PostView().overlay(
+                ZStack{
+                    Color.primary.opacity(0.25).ignoresSafeArea()
+                    ProgressView().frame(width: 80, height: 80.0).background(scheme == .dark ? .black : .white,in: RoundedRectangle(cornerRadius: 15))
+                }
+            
+            
+            
+            ).environmentObject(uniPortData)
         })
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
         }
-              }
+    }
+
     
     @ViewBuilder
     func CardView(post: Post)->some View{
-        VStack(alignment: .leading, spacing: 10){
+       
+            VStack(alignment: .leading, spacing: 15){
+                
+                Text(post.title).fontWeight(.bold)
+                Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
+          
+                ForEach(post.postContent){ content in
+                    
+                    if content.type == .Image{
+                        VStack{
+                            
+                                AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+                            
+                        }
+                        
+
+                           
+                       
+                    }
+                    else{
+                        Text(content.value).font(.system(size: getFontSize(type: content.type)))
+                    }
+                }
+                Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+                Button(action: {
+                    uniPortComments.createPost.toggle()
+                    
+                }, label: {
+                    Text("Dodaj Komentarz")}).fullScreenCover(isPresented: $uniPortComments.createPost,content: {
+                        CommentView(idPost: post.id!).environmentObject(uniPortComments)
+                    }).alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
+                        
+                    }
+                .padding().foregroundStyle(.blue)
+            
+                
+                if let posts1 = uniPortComments.posts {
+                    if posts1.isEmpty{
+                        
+                    }else{
+                    List(posts1){ comment in
+                        if comment.idPost == post.id {
+                              CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
+                                    Button(role: .destructive){
+                                        if Auth.auth().currentUser?.email == comment.author{
+                                            uniPortComments.deleteComment(post: comment)
+                                            
+                                        }
+                                    } label:{
+                                    if Auth.auth().currentUser?.email == post.author{
+                                    Image(systemName: "trash")
+                                        }
+                                    }}}}.frame(minHeight: minRowHeight * 3)
+                            
+                            .listStyle(.insetGrouped)
+                    }
+                    
+                }
+                
+     
+            VStack(alignment: .leading, spacing: 10){
             
             Text(post.title).fontWeight(.bold)
             Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
@@ -99,12 +166,9 @@ struct Home: View {
                 
                 if content.type == .Image{
                     VStack{
-                        if downloadimagefromfirebase(mystring: content.value) != "" {
-                            WebImage(url: URL(string: downloadimagefromfirebase(mystring: content.value))!).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
-                        }
-                        else{
-                            Loader()
-                        }
+                        
+                            AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+                        
                     }
                     
 
@@ -116,47 +180,17 @@ struct Home: View {
                 }
             }
             Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
-            Button(action: {
-                uniPortComments.createPost.toggle()
-                
-            }, label: {
-                Text("Dodaj Komentarz")})
-            .padding().foregroundStyle(.blue)
-        
-            
-            if let posts1 = uniPortComments.posts {
-                if posts1.isEmpty{
-                    
-                }else{
-                List(posts1){ comment in
-                    if comment.idPost == post.id {
-                          CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
-                                Button(role: .destructive){
-                                    if Auth.auth().currentUser?.email == comment.author{
-                                        uniPortComments.deleteComment(post: comment)
-                                        
-                                    }
-                                } label:{
-                                if Auth.auth().currentUser?.email == post.author{
-                                Image(systemName: "trash")
-                                    }
-                                }}}}.frame(minHeight: minRowHeight * 3)
-                        
-                        .listStyle(.insetGrouped)
-                }
-                
-            }
         }.onAppear{
 
+       
           
-            
             if czyJest == "jest"{
-                self.i += 1}}.fullScreenCover(isPresented: $uniPortComments.createPost,content: {
-                    CommentView(idPost: post.id!).environmentObject(uniPortComments)
-                })
-                .alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
-                    
-                }
+                self.i += 1}
+               
+          
+                        
+        }
+        
                    
     }
 @ViewBuilder
@@ -294,21 +328,5 @@ struct Loader : UIViewRepresentable{
             }
         }
     }
-    struct FirebaseImage : View {
- var placeholder = UIImage(named: "j.jpg")
-        init(id: String) {
-            self.imageLoader = Loader2(id)
-        }
-
-        @ObservedObject private var imageLoader : Loader2
-
-        var image: UIImage? {
-            imageLoader.data.flatMap(UIImage.init)
-        }
-
-        var body: some View {
-            Image(uiImage: ((image ) ?? placeholder)!)
-        }
     }
-
 }

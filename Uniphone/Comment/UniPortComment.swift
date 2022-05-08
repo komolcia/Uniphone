@@ -24,11 +24,13 @@ class UniPortComment: ObservableObject{
             showalert.toggle()
         }
     }
+    
     func deleteComment(post: Comment){
         guard let _ = posts else{return}
         let index = posts?.firstIndex(where: {
             currentPost in return currentPost.id == post.id
         }) ?? 0
+        Firestore.firestore().collection("Komentarze").document(post.id ?? "").delete()
         withAnimation{posts?.remove(at: index)}
     }
     func writePost(author: String, comment:String,idPost: String){
