@@ -36,10 +36,10 @@ struct Home: View {
                 
                 List(posts){post in
                     //cardview
-                    CardView(post: post)
+                    CardView(post: post).fixedSize(horizontal: true, vertical: false)
                     //Swipe do usuniecia
                         .swipeActions(edge: .trailing, allowsFullSwipe: true){
-                            Button(role: .destructive){
+                            Button{
                                 if Auth.auth().currentUser?.email == post.author{
                                     uniPortData.deletePost(post: post)
                                     
@@ -70,7 +70,7 @@ struct Home: View {
             UINavigationBar.appearance().isTranslucent = false
             UINavigationBar.appearance().standardAppearance=appearance
             UINavigationBar.appearance().scrollEdgeAppearance = appearance
-            
+         
            // UINavigationBar.appearance().setBackgroundImage(UIImage(named: "j"), for: .default)
         
              //   UINavigationBar.appearance().backgroundColor=UIColor.purple
@@ -79,15 +79,7 @@ struct Home: View {
             await uniPortData.fetchPosts()
             await uniPortComments.fetchPosts()
         }.fullScreenCover(isPresented: $uniPortData.createPost,content: {
-            PostView().overlay(
-                ZStack{
-                    Color.primary.opacity(0.25).ignoresSafeArea()
-                    ProgressView().frame(width: 80, height: 80.0).background(scheme == .dark ? .black : .white,in: RoundedRectangle(cornerRadius: 15))
-                }
-            
-            
-            
-            ).environmentObject(uniPortData)
+            PostView().environmentObject(uniPortData)
         })
         .alert(uniPortData.alertMsg, isPresented: $uniPortData.showalert){
             
@@ -104,24 +96,27 @@ struct Home: View {
                 VStack(alignment: .center, spacing: 15){
                     Spacer()
                          .frame(height: 40)
-                    Text(post.title).fontWeight(.bold)
-                    Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
+                    Text(post.title).fontWeight(.bold).fixedSize(horizontal: false, vertical: true)
+                    Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
               
                     ForEach(post.postContent){ content in
                         
-                        if content.type == .Image{
+                        if content.type == .Image {
+                           
                             VStack{
-                                
+                                if String(content.value).count >= 40{
                                     AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
                                 
+                                }
                             }
                             
 
                                
                            
+                       
                         }
                         else{
-                            Text(content.value).font(.system(size: getFontSize(type: content.type)))
+                            Text(content.value).font(.system(size: getFontSize(type: content.type))).fixedSize(horizontal: false, vertical: true)
                         }
                     }
                     Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
@@ -144,7 +139,7 @@ struct Home: View {
                         List(posts1){ comment in
                             if comment.idPost == post.id {
                                   CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
-                                        Button(role: .destructive){
+                                        Button{
                                             if Auth.auth().currentUser?.email == comment.author{
                                                 uniPortComments.deleteComment(post: comment)
                                                 
@@ -162,19 +157,23 @@ struct Home: View {
                     
          
                 }
+            }.task {
+                await uniPortData.fetchPosts()
+                await uniPortComments.fetchPosts()
             }
         } label: {
             VStack(alignment: .leading, spacing: 15){
             
-            Text(post.title).fontWeight(.bold)
-            Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
+            Text(post.title).fontWeight(.bold).fixedSize(horizontal: false, vertical: true)
+            Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
       
             ForEach(post.postContent){ content in
                 
                 if content.type == .Image{
                     VStack{
-                        
+                        if String(content.value).count >= 40{
                             AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+                        }
                         
                     }
                     
@@ -183,10 +182,10 @@ struct Home: View {
                    
                 }
                 else{
-                    Text(content.value).font(.system(size: getFontSize(type: content.type)))
+                    Text(content.value).font(.system(size: getFontSize(type: content.type))).fixedSize(horizontal: false, vertical: true)
                 }
             }
-            Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
             
             
  
@@ -199,6 +198,9 @@ struct Home: View {
                
           
                         
+        }.task {
+            await uniPortData.fetchPosts()
+            await uniPortComments.fetchPosts()
         }}
        
         
@@ -207,8 +209,8 @@ struct Home: View {
 @ViewBuilder
 func CommentsView(comment: Comment)->some View{
     VStack(alignment: .trailing, spacing: 10){
-        Text("Autor: \(comment.author)").font(.system(size:10)).foregroundColor(.black)
-        Text(comment.comment).fontWeight(.bold).font(.system(size:14)).foregroundColor(.black)
+        Text("Autor: \(comment.author)").font(.system(size:10)).fixedSize(horizontal: false, vertical: true)
+        Text(comment.comment).fontWeight(.bold).font(.system(size:14)).fixedSize(horizontal: false, vertical: true)
     }.onAppear{
         print("Zobaczmy czy dziala")
     }

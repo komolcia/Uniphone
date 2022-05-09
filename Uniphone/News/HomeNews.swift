@@ -34,14 +34,16 @@ struct HomeNews: View {
                 
                 List(posts){post in
                     //cardview
-                    CardView(post: post)
+                    CardView(post: post).fixedSize(horizontal: true, vertical: false)
                     //Swipe do usuniecia
                         .swipeActions(edge: .trailing, allowsFullSwipe: true){
-                            Button(role: .destructive){
+                            Button{
                                 if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
                                     uniPortData.deletePost(post: post)}
                             } label:{
+                                if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
                             Image(systemName: "trash")
+                                }
                             }}
                     
                 }.listStyle(.insetGrouped)
@@ -52,10 +54,12 @@ struct HomeNews: View {
         }.navigationBarTitle("Aktualnosci" , displayMode: .inline)
             .frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
                 Button(action: {
-                    uniPortData.createPost.toggle()
+                    if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
+                        uniPortData.createPost.toggle()}
                     
                 }, label: {
-                    Image(systemName: "plus").font(.title2.bold()).foregroundColor(.white).padding().background(Color(UIColor(red: 0.74, green: 0.41, blue: 0.32, alpha: 1.00)), in: Circle())})
+                    if Auth.auth().currentUser?.email == "komolcia@gmail.com"{
+                        Image(systemName: "plus").font(.title2.bold()).foregroundColor(.white).padding().background(Color(UIColor(red: 0.74, green: 0.41, blue: 0.32, alpha: 1.00)), in: Circle())}})
                 .padding().foregroundStyle(.primary) ,alignment: .bottomTrailing
             ).onAppear{
                 let appearance = UINavigationBarAppearance()
@@ -80,9 +84,9 @@ struct HomeNews: View {
     
     @ViewBuilder
     func CardView(post: Post)->some View{
-        VStack(alignment: .leading, spacing: 100){
-            Text(post.title).fontWeight(.bold)
-            Text("Written By: \(post.author)").font(.callout).foregroundColor(.gray)
+        VStack(alignment: .leading, spacing: 12){
+            Text(post.title).fontWeight(.bold).fixedSize(horizontal: false, vertical: true)
+            Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
       
             ForEach(post.postContent){ content in
                 
@@ -96,10 +100,10 @@ struct HomeNews: View {
                    
                 }
                 else{
-                    Text(content.value).font(.system(size: getFontSize(type: content.type)))
+                    Text(content.value).font(.system(size: getFontSize(type: content.type))).fixedSize(horizontal: false, vertical: true)
                 }
             }
-            Text("Written: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
             
 
         }.onAppear{
