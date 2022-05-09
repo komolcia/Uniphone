@@ -98,66 +98,73 @@ struct Home: View {
     @ViewBuilder
     func CardView(post: Post)->some View{
        
-            VStack(alignment: .leading, spacing: 15){
-                
-                Text(post.title).fontWeight(.bold)
-                Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
-          
-                ForEach(post.postContent){ content in
-                    
-                    if content.type == .Image{
-                        VStack{
+        NavigationLink{
+            ScrollView{
+               
+                VStack(alignment: .center, spacing: 15){
+                    Spacer()
+                         .frame(height: 40)
+                    Text(post.title).fontWeight(.bold)
+                    Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
+              
+                    ForEach(post.postContent){ content in
+                        
+                        if content.type == .Image{
+                            VStack{
+                                
+                                    AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+                                
+                            }
                             
-                                AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+
+                               
+                           
+                        }
+                        else{
+                            Text(content.value).font(.system(size: getFontSize(type: content.type)))
+                        }
+                    }
+                    Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+                    Button(action: {
+                        uniPortComments.createPost.toggle()
+                        
+                    }, label: {
+                        Text("Dodaj Komentarz")}).fullScreenCover(isPresented: $uniPortComments.createPost,content: {
+                            CommentView(idPost: post.id!).environmentObject(uniPortComments)
+                        }).alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
                             
                         }
-                        
-
-                           
-                       
-                    }
-                    else{
-                        Text(content.value).font(.system(size: getFontSize(type: content.type)))
-                    }
-                }
-                Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
-                Button(action: {
-                    uniPortComments.createPost.toggle()
-                    
-                }, label: {
-                    Text("Dodaj Komentarz")}).fullScreenCover(isPresented: $uniPortComments.createPost,content: {
-                        CommentView(idPost: post.id!).environmentObject(uniPortComments)
-                    }).alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
-                        
-                    }
-                .padding().foregroundStyle(.blue)
-            
+                    .padding().foregroundStyle(.blue)
                 
-                if let posts1 = uniPortComments.posts {
-                    if posts1.isEmpty{
-                        
-                    }else{
-                    List(posts1){ comment in
-                        if comment.idPost == post.id {
-                              CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
-                                    Button(role: .destructive){
-                                        if Auth.auth().currentUser?.email == comment.author{
-                                            uniPortComments.deleteComment(post: comment)
-                                            
-                                        }
-                                    } label:{
-                                    if Auth.auth().currentUser?.email == post.author{
-                                    Image(systemName: "trash")
-                                        }
-                                    }}}}.frame(minHeight: minRowHeight * 3)
+                    
+                    if let posts1 = uniPortComments.posts {
+                        if posts1.isEmpty{
                             
-                            .listStyle(.insetGrouped)
+                        }else{
+                        List(posts1){ comment in
+                            if comment.idPost == post.id {
+                                  CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
+                                        Button(role: .destructive){
+                                            if Auth.auth().currentUser?.email == comment.author{
+                                                uniPortComments.deleteComment(post: comment)
+                                                
+                                            }
+                                        } label:{
+                                        if Auth.auth().currentUser?.email == post.author{
+                                        Image(systemName: "trash")
+                                            }
+                                        }}}}.frame(minHeight: minRowHeight * 20)
+                                
+                                .listStyle(.insetGrouped)
+                        }
+                        
                     }
                     
+         
                 }
-                
-     
-            VStack(alignment: .leading, spacing: 10){
+            }
+        } label: {
+            VStack(alignment: .leading, spacing: 15){
             
             Text(post.title).fontWeight(.bold)
             Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray)
@@ -180,6 +187,9 @@ struct Home: View {
                 }
             }
             Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+            
+            
+ 
         }.onAppear{
 
        
@@ -189,7 +199,8 @@ struct Home: View {
                
           
                         
-        }
+        }}
+       
         
                    
     }
@@ -329,4 +340,4 @@ struct Loader : UIViewRepresentable{
         }
     }
     }
-}
+
