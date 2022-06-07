@@ -34,7 +34,9 @@ struct PostViewNews: View {
             ScrollView(.vertical,showsIndicators: false,content: {
                 VStack( spacing: 15){
                     VStack(alignment: .leading){
-                        TextField("Post Title", text: $postTitle).font(.title2).fixedSize(horizontal: false, vertical: true)
+                        TextField("Post Title", text: $postTitle).font(.title2).fixedSize(horizontal: false, vertical: true).onReceive(postTitle.publisher.collect()) {
+                            postTitle = String($0.prefix(30))
+                }
                         Divider()
                     }
                     VStack(alignment: .leading,spacing: 11){
@@ -98,7 +100,9 @@ struct PostViewNews: View {
                                             
                                 
                                 } else{
-                                TextView(text: $content.value, height: $content.height, fontSize: getFontSize(type: content.type)).frame(height: content.height == 0 ? getFontSize(type: content.type) * 2: content.height).background(
+                                TextView(text: $content.value, height: $content.height, fontSize: getFontSize(type: content.type)).onReceive(content.value.publisher.collect()) {
+                                    content.value = String($0.prefix(30))
+                        }.frame(height: content.height == 0 ? getFontSize(type: content.type) * 2: content.height).background(
                                     Text(content.type.rawValue).fixedSize(horizontal: false, vertical: true).font(.system(size: getFontSize(type: content.type))).foregroundColor(.gray).opacity(content.value == "" ? 0.7 : 0).padding(.leading,5),alignment: .leading)
                             }
                         }

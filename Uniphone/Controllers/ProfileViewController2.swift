@@ -20,8 +20,8 @@ class ProfileViewController2: UIViewController {
                 self.present(alert,animated: true, completion: nil)
                 return
             }
-            let alert = UIAlertController(title: "udało się" ,message: "Na podany email został wysłany reset hasła", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: "Udało się" ,message: "Na podany email został wysłany reset hasła", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert,animated: true, completion: nil)
         }
         

@@ -148,7 +148,7 @@ struct Home: View {
                                         if Auth.auth().currentUser?.email == post.author{
                                         Image(systemName: "trash")
                                             }
-                                        }}}}.frame(minHeight: minRowHeight * 20)
+                                        }}}}.frame(minHeight: minRowHeight * 40)
                                 
                                 .listStyle(.insetGrouped)
                         }
@@ -208,12 +208,11 @@ struct Home: View {
     }
 @ViewBuilder
 func CommentsView(comment: Comment)->some View{
-    VStack(alignment: .trailing, spacing: 10){
-        Text("Autor: \(comment.author)").font(.system(size:10)).fixedSize(horizontal: false, vertical: true)
-        Text(comment.comment).fontWeight(.bold).font(.system(size:14)).fixedSize(horizontal: false, vertical: true)
-    }.onAppear{
-        print("Zobaczmy czy dziala")
-    }
+    ScrollView{
+        VStack( spacing: 15){
+        Text("Autor: \(comment.author)").font(.system(size:10))
+        Text(comment.comment).fontWeight(.bold).font(.system(size:14))
+    }.frame(maxWidth: .infinity, alignment: .trailing)}
 }
     func getImageFrom(gradientLayer:CAGradientLayer) -> UIImage? {
         var gradientImage:UIImage?

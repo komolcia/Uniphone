@@ -21,7 +21,7 @@ class UniPortViewModelNews: ObservableObject{
     @Published var isWriting = false
     func fetchPosts()async{
         do{
-            let db = Firestore.firestore().collection("UniPortAktualnosci")
+            let db = Firestore.firestore().collection("UniPortAktualnosci").order(by: "date",descending: true)
             let posts = try await db.getDocuments()
             self.posts = posts.documents.compactMap({post in
                 return try? post.data(as: Post.self)

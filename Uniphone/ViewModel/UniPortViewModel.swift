@@ -11,7 +11,7 @@ class UniPortViewModel: ObservableObject{
     @Published var isWriting = false
     func fetchPosts()async{
         do{
-            let db = Firestore.firestore().collection("UniPort")
+            let db = Firestore.firestore().collection("UniPort").order(by: "date",descending: true)
             let posts = try await db.getDocuments()
             self.posts = posts.documents.compactMap({post in
                 return try? post.data(as: Post.self)
@@ -29,7 +29,7 @@ class UniPortViewModel: ObservableObject{
         let index = posts?.firstIndex(where: {
             currentPost in return currentPost.id == post.id
         }) ?? 0
-        Firestore.firestore().collection("Uniport").document(post.id ?? "").delete()
+        Firestore.firestore().collection("UniPort").document(post.id ?? "").delete()
         withAnimation{posts?.remove(at: index)}
     }
     func writePost(content: [PostContent],author: String, postTitle: String){

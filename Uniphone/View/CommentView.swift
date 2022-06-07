@@ -26,7 +26,9 @@ struct CommentView: View {
                         Divider()
                     }
                     VStack(alignment: .leading){
-                        TextField("Comment", text: $comment).font(.title2)
+                        TextField("Comment", text: $comment).font(.title2).onReceive(comment.publisher.collect()) {
+                            comment = String($0.prefix(30))
+                }
                         Divider()
                     }
                 .padding(.top,5).padding(.bottom,20)

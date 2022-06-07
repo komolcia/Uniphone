@@ -13,7 +13,7 @@ class UniPortComment: ObservableObject{
     @Published var isWriting = false
     func fetchPosts()async{
         do{
-            let db = Firestore.firestore().collection("Komentarz")
+            let db = Firestore.firestore().collection("Komentarz").order(by: "date",descending: false)
             let posts = try await db.getDocuments()
             self.posts = posts.documents.compactMap({post in
                 return try? post.data(as: Comment.self)
@@ -40,7 +40,7 @@ class UniPortComment: ObservableObject{
                 
             }
         
-            let post =     Comment(comment: comment, author: author, idPost: idPost)
+            let post =     Comment(comment: comment, author: author, idPost: idPost, date: Timestamp(date: Date()))
             let _ = try Firestore.firestore().collection("Komentarz").document().setData(from: post)
             withAnimation{
                 posts?.append(post)

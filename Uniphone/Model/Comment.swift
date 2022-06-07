@@ -14,4 +14,5 @@ struct Comment: Identifiable , Codable{
     var comment: String
     var author: String
     var idPost: String?
+    var date: Timestamp
 }

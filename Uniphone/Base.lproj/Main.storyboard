@@ -195,7 +195,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7eY-tJ-Bva"/>
-                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bvt-VP-2Yq" firstAttribute="leading" secondItem="7eY-tJ-Bva" secondAttribute="leading" constant="5" id="9mn-GY-5sX"/>
                             <constraint firstItem="6XZ-2U-hRw" firstAttribute="leading" secondItem="7eY-tJ-Bva" secondAttribute="leading" constant="30" id="SrC-LM-QG2"/>
@@ -236,7 +236,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3e4-VZ-huF">
                                 <rect key="frame" x="120" y="98" width="294" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Profil">
+                                <buttonConfiguration key="configuration" style="plain" title="Hasło">
                                     <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="20"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
@@ -654,15 +654,12 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="0EI-CD-sLd"/>
+        <segue reference="rn3-Ar-oPt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="AF2ACCFA-2C43-4092-9B52-EEB60C5C59B1-1" width="320" height="431"/>
         <image name="text.justify" catalog="system" width="128" height="100"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
