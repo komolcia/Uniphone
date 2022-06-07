@@ -61,7 +61,7 @@ struct PostView: View {
                                 
                                             VStack {
                                                 
-                                                if selectedImage != nil {
+                                                if selectedImage != nil{
                                                   
                                                     if downloadimagefromfirebase(mystring: content.value) != "" {
                                                         AnimatedImage(url: URL(string: downloadimagefromfirebase(mystring: content.value))!).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding().onAppear{
@@ -107,9 +107,7 @@ struct PostView: View {
                                             
                                 
                                 } else{
-                                    TextView(text: $content.value, height: $content.height, fontSize: getFontSize(type: content.type)).onReceive(content.value.publisher.collect()) {
-                                        content.value = String($0.prefix(30))
-                            }.frame(height: content.height == 0 ? getFontSize(type: content.type) * 2: content.height).background(
+                                    TextView(text: $content.value, height: $content.height, fontSize: getFontSize(type: content.type)).frame(height: content.height == 0 ? getFontSize(type: content.type) * 2: content.height).background(
                                     Text(content.type.rawValue).fixedSize(horizontal: false, vertical: true).font(.system(size: getFontSize(type: content.type))).foregroundColor(.gray).opacity(content.value == "" ? 0.7 : 0).padding(.leading,5),alignment: .leading)
                             }
                         }
@@ -187,11 +185,14 @@ struct PostView: View {
         }
      }
     func downloadimagefromfirebase(mystring: String)->String{
+        let seconds = 3.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+           
        @State var myurl : String
         myurl = ""
         self.czyJest = "jest"
         let storage = Storage.storage().reference()
-       
+       print("probuj")
             storage.child(mystring).downloadURL{
                 (url,err) in
                 if err != nil{
@@ -206,7 +207,7 @@ struct PostView: View {
                 self.url.append("\(url!)")
                 
                 
-        }
+            }}
         var j = 0
         if url.indices.contains(i) == true{
             for string in url {
