@@ -41,13 +41,13 @@ struct PostView: View {
             ScrollView(.vertical,showsIndicators: false,content: {
                 VStack( spacing: 15){
                     VStack(alignment: .leading){
-                        TextField("Post Title", text: $postTitle).font(.title2).fixedSize(horizontal: false, vertical: true).onReceive(postTitle.publisher.collect()) {
+                        TextField("Tytuł", text: $postTitle).font(.title2).fixedSize(horizontal: false, vertical: true).onReceive(postTitle.publisher.collect()) {
                             postTitle = String($0.prefix(30))
                     }
                         Divider()
                     }
                     VStack(alignment: .leading,spacing: 11){
-                        Text("Author:").font(.caption.bold())
+                        Text("Autor:").font(.caption.bold())
                         Text(authorName!).font(.caption.italic()).fixedSize(horizontal: false, vertical: true)
                         Divider()
                     }
@@ -89,7 +89,7 @@ struct PostView: View {
                                                     Singleton.sharedInstance.imageString = mystrin
                                                     k += 1
                                                 }, label: {
-                                                    Text("Photo").fontWeight(.bold)})
+                                                    Text("Wybierz Zdjęcie").fontWeight(.bold)})
                                                 }
                                                 
                                                 
@@ -155,10 +155,10 @@ struct PostView: View {
                         }.foregroundStyle(.primary).frame( maxWidth: .infinity, alignment: .leading)
                     }
                 }.padding()
-            }).navigationTitle(postTitle == "" ? "PostTitle": postTitle).navigationBarTitleDisplayMode(.inline).toolbar{
+            }).navigationTitle(postTitle == "" ? "Tytuł": postTitle).navigationBarTitleDisplayMode(.inline).toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     NavigationLink(destination: Home()) {
-                        Text("Cancel").onTapGesture {
+                        Text("Anuluj").onTapGesture {
                                 uniportData.createPost.toggle()
                                 
                             }
@@ -171,7 +171,7 @@ struct PostView: View {
                
                 ToolbarItem(placement: .navigationBarTrailing){
                     NavigationLink(destination: Home()) {
-                        Text("Post").onTapGesture{
+                        Text("Opublikuj").onTapGesture{
                             uniportData.writePost(content: postContent, author: authorName!, postTitle: postTitle)}
                     }
                     //Button("Post"){
@@ -185,7 +185,7 @@ struct PostView: View {
         }
      }
     func downloadimagefromfirebase(mystring: String)->String{
-        let seconds = 3.0
+        let seconds = 5.0
         DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
            
        @State var myurl : String

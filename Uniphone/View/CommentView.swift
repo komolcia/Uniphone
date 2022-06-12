@@ -21,12 +21,12 @@ struct CommentView: View {
             ScrollView(.vertical,showsIndicators: false,content: {
                 VStack( spacing: 15){
                     VStack(alignment: .leading,spacing: 11){
-                        Text("Author:").font(.caption.bold())
+                        Text("Autor:").font(.caption.bold())
                         Text(authorName!).font(.caption.italic())
                         Divider()
                     }
                     VStack(alignment: .leading){
-                        TextField("Comment", text: $comment).font(.title2).onReceive(comment.publisher.collect()) {
+                        TextField("Komentarz", text: $comment).font(.title2).onReceive(comment.publisher.collect()) {
                             comment = String($0.prefix(30))
                 }
                         Divider()
@@ -38,14 +38,14 @@ struct CommentView: View {
             
         
         ToolbarItem(placement: .navigationBarLeading){
-            Button("Cancel"){
+            Button("Anuluj"){
                 uniportComment.createPost.toggle()
             
             }
         }
        
         ToolbarItem(placement: .navigationBarTrailing){
-            Button("Post"){
+            Button("Opublikuj"){
                 uniportComment.writePost(author: authorName!, comment: comment, idPost: idPost)
                 
                 

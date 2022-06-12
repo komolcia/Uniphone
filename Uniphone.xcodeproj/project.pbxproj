@@ -146,15 +146,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E1A592428213DC7004D465E /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				7E176EC728201BE400E2122D /* UniPortComment.swift */,
-			);
-			path = Comment;
-			sourceTree = "<group>";
-		};
-		7E1A592528213DEC004D465E /* News */ = {
+		7E1A592528213DEC004D465E /* NewsView */ = {
 			isa = PBXGroup;
 			children = (
 				7EEECD452821432B00C5B587 /* ContentViewNews.swift */,
@@ -163,7 +155,7 @@
 				7EEECD462821432B00C5B587 /* TextViewNews.swift */,
 				7EEECD442821432B00C5B587 /* UniPortAppNews.swift */,
 			);
-			path = News;
+			path = NewsView;
 			sourceTree = "<group>";
 		};
 		7E6FA5962801D4F8002DD295 /* Image */ = {
@@ -190,6 +182,7 @@
 		7E70EAC527FB7A9400DCE613 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7E176EC728201BE400E2122D /* UniPortComment.swift */,
 				7EDEA0A52816F94300523307 /* UniPortViewModelNews.swift */,
 				7E70EACC27FB83C200DCE613 /* UniPortViewModel.swift */,
 			);
@@ -228,8 +221,7 @@
 		7EB8A4EE27DB5CB800940803 /* Uniphone */ = {
 			isa = PBXGroup;
 			children = (
-				7E1A592528213DEC004D465E /* News */,
-				7E1A592428213DC7004D465E /* Comment */,
+				7E1A592528213DEC004D465E /* NewsView */,
 				7E6FA5962801D4F8002DD295 /* Image */,
 				7E70EACE27FB83CA00DCE613 /* Model */,
 				7E70EAC527FB7A9400DCE613 /* ViewModel */,
