@@ -28,9 +28,6 @@
 		7EB8A4F727DB5CB800940803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F527DB5CB800940803 /* Main.storyboard */; };
 		7EB8A4F927DB5CBA00940803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8A4F827DB5CBA00940803 /* Assets.xcassets */; };
 		7EB8A4FC27DB5CBA00940803 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8A4FA27DB5CBA00940803 /* LaunchScreen.storyboard */; };
-		7EB8A50727DB5CBA00940803 /* UniphoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A50627DB5CBA00940803 /* UniphoneTests.swift */; };
-		7EB8A51127DB5CBA00940803 /* UniphoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A51027DB5CBA00940803 /* UniphoneUITests.swift */; };
-		7EB8A51327DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8A51227DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift */; };
 		7EBA416027E882AC00F43F3F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA415F27E882AC00F43F3F /* LoginViewController.swift */; };
 		7EBA416227E882C800F43F3F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA416127E882C800F43F3F /* RegisterViewController.swift */; };
 		7EBA416427E882D800F43F3F /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EBA416327E882D800F43F3F /* HelloViewController.swift */; };
@@ -91,10 +88,7 @@
 		7EB8A4FB27DB5CBA00940803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7EB8A4FD27DB5CBA00940803 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EB8A50227DB5CBA00940803 /* UniphoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniphoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EB8A50627DB5CBA00940803 /* UniphoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniphoneTests.swift; sourceTree = "<group>"; };
 		7EB8A50C27DB5CBA00940803 /* UniphoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniphoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7EB8A51027DB5CBA00940803 /* UniphoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniphoneUITests.swift; sourceTree = "<group>"; };
-		7EB8A51227DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniphoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7EBA415F27E882AC00F43F3F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7EBA416127E882C800F43F3F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7EBA416327E882D800F43F3F /* HelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
@@ -153,7 +147,6 @@
 				7EEECD432821432B00C5B587 /* HomeNews.swift */,
 				7EEECD422821432B00C5B587 /* PostViewNews.swift */,
 				7EEECD462821432B00C5B587 /* TextViewNews.swift */,
-				7EEECD442821432B00C5B587 /* UniPortAppNews.swift */,
 			);
 			path = NewsView;
 			sourceTree = "<group>";
@@ -172,7 +165,6 @@
 				7E6FA5922801C35B002DD295 /* PostView.swift */,
 				7E70EAC827FB7B6D00DCE613 /* Home.swift */,
 				7E70EACA27FB834800DCE613 /* ContentView.swift */,
-				7E70EAD127FC850E00DCE613 /* UniPortApp.swift */,
 				7E6FA5942801CE09002DD295 /* TextView.swift */,
 				7E176EC92820209900E2122D /* CommentView.swift */,
 			);
@@ -198,12 +190,28 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7EA3FB3B2859D8840095D062 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				7EEECD4E2821546000C5B587 /* pisanie1sek.m4a */,
+				7EEECD4C2821507900C5B587 /* pisanie.m4a */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
+		7EA3FB3C2859D8A50095D062 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7E70EAD127FC850E00DCE613 /* UniPortApp.swift */,
+				7EEECD442821432B00C5B587 /* UniPortAppNews.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		7EB8A4E327DB5CB800940803 = {
 			isa = PBXGroup;
 			children = (
 				7EB8A4EE27DB5CB800940803 /* Uniphone */,
-				7EB8A50527DB5CBA00940803 /* UniphoneTests */,
-				7EB8A50F27DB5CBA00940803 /* UniphoneUITests */,
 				7EB8A4ED27DB5CB800940803 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -221,6 +229,8 @@
 		7EB8A4EE27DB5CB800940803 /* Uniphone */ = {
 			isa = PBXGroup;
 			children = (
+				7EA3FB3C2859D8A50095D062 /* App */,
+				7EA3FB3B2859D8840095D062 /* Sound */,
 				7E1A592528213DEC004D465E /* NewsView */,
 				7E6FA5962801D4F8002DD295 /* Image */,
 				7E70EACE27FB83CA00DCE613 /* Model */,
@@ -239,28 +249,9 @@
 			path = Uniphone;
 			sourceTree = "<group>";
 		};
-		7EB8A50527DB5CBA00940803 /* UniphoneTests */ = {
-			isa = PBXGroup;
-			children = (
-				7EB8A50627DB5CBA00940803 /* UniphoneTests.swift */,
-			);
-			path = UniphoneTests;
-			sourceTree = "<group>";
-		};
-		7EB8A50F27DB5CBA00940803 /* UniphoneUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7EB8A51027DB5CBA00940803 /* UniphoneUITests.swift */,
-				7EB8A51227DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift */,
-			);
-			path = UniphoneUITests;
-			sourceTree = "<group>";
-		};
 		7EBA415E27E87E7E00F43F3F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7EEECD4E2821546000C5B587 /* pisanie1sek.m4a */,
-				7EEECD4C2821507900C5B587 /* pisanie.m4a */,
 				7EB8A4F327DB5CB800940803 /* WelcomeViewController.swift */,
 				7EBA415F27E882AC00F43F3F /* LoginViewController.swift */,
 				7EBA416127E882C800F43F3F /* RegisterViewController.swift */,
@@ -462,7 +453,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EB8A50727DB5CBA00940803 /* UniphoneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,8 +460,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EB8A51327DB5CBA00940803 /* UniphoneUITestsLaunchTests.swift in Sources */,
-				7EB8A51127DB5CBA00940803 /* UniphoneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
