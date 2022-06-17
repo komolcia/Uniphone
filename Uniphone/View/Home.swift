@@ -91,76 +91,7 @@ struct Home: View {
     func CardView(post: Post)->some View{
        
         NavigationLink{
-            ScrollView{
-               
-                VStack(alignment: .center, spacing: 15){
-                    Spacer()
-                         .frame(height: 40)
-                    Text(post.title).fontWeight(.bold).fixedSize(horizontal: false, vertical: true)
-                    Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
-              
-                    ForEach(post.postContent){ content in
-                        
-                        if content.type == .Image {
-                           
-                            VStack{
-                                if String(content.value).count >= 40{
-                                    AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
-                                
-                                }
-                            }
-                            
-
-                               
-                           
-                       
-                        }
-                        else{
-                            Text(content.value).font(.system(size: getFontSize(type: content.type))).fixedSize(horizontal: false, vertical: true)
-                        }
-                    }
-                    Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
-                    Button(action: {
-                        uniPortComments.createPost.toggle()
-                        
-                    }, label: {
-                        Text("Dodaj Komentarz")}).fullScreenCover(isPresented: $uniPortComments.createPost,content: {
-                            CommentView(idPost: post.id!).environmentObject(uniPortComments)
-                        }).alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
-                            
-                        }
-                    .padding().foregroundStyle(.blue)
-                
-                    
-                    if let posts1 = uniPortComments.posts {
-                        if posts1.isEmpty{
-                            
-                        }else{
-                        List(posts1){ comment in
-                            if comment.idPost == post.id {
-                                  CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
-                                        Button{
-                                            if Auth.auth().currentUser?.email == comment.author{
-                                                uniPortComments.deleteComment(post: comment)
-                                                
-                                            }
-                                        } label:{
-                                        if Auth.auth().currentUser?.email == post.author{
-                                        Image(systemName: "trash")
-                                            }
-                                        }}}}.frame(minHeight: minRowHeight * 40)
-                                
-                                .listStyle(.insetGrouped)
-                        }
-                        
-                    }
-                    
-         
-                }
-            }.task {
-                await uniPortData.fetchPosts()
-                await uniPortComments.fetchPosts()
-            }
+            Home1( post: post)
         } label: {
             VStack(alignment: .leading, spacing: 15){
             
@@ -342,3 +273,103 @@ struct Loader : UIViewRepresentable{
     }
     }
 
+struct Home1: View {
+    @Environment(\.defaultMinListRowHeight) var minRowHeight
+    @StateObject var uniPortData = UniPortViewModel()
+    @StateObject var uniPortComments = UniPortComment()
+    @Environment(\.colorScheme) var scheme//kolorki<3
+    @State var url = [String]()
+    @State var i = 0
+    @State var czyJest = ""
+    @State var post: Post
+    var body: some View {
+        ScrollView{
+           
+            VStack(alignment: .center, spacing: 15){
+                Spacer()
+                     .frame(height: 40)
+                Text(post.title).fontWeight(.bold).fixedSize(horizontal: false, vertical: true)
+                Text("Autor: \(post.author)").font(.callout).foregroundColor(.gray).fixedSize(horizontal: false, vertical: true)
+          
+                ForEach(post.postContent){ content in
+                    
+                    if content.type == .Image {
+                       
+                        VStack{
+                            if String(content.value).count >= 40{
+                                AnimatedImage(url: URL(string: content.value)).resizable().aspectRatio(contentMode: .fit).frame(width: 300, height: 300).padding()
+                            
+                            }
+                        }
+                        
+
+                           
+                       
+                   
+                    }
+                    else{
+                        Text(content.value).font(.system(size: getFontSize(type: content.type))).fixedSize(horizontal: false, vertical: true)
+                    }
+                }
+                Text("Data: \(    post.date.dateValue().formatted(date: .numeric, time: .shortened))").font(.caption.bold()).foregroundColor(.gray)
+                Button(action: {
+                    uniPortComments.createPost.toggle()
+                    
+                }, label: {
+                    Text("Dodaj Komentarz")})
+                .padding().foregroundStyle(.blue)
+               
+                
+                
+                if let posts1 = uniPortComments.posts {
+                    if posts1.isEmpty{
+                        
+                    }else{
+                    List(posts1){ comment in
+                        if comment.idPost == post.id {
+                              CommentsView(comment: comment).swipeActions(edge: .trailing, allowsFullSwipe: true){
+                                    Button{
+                                        if Auth.auth().currentUser?.email == comment.author{
+                                            uniPortComments.deleteComment(post: comment)
+                                            
+                                        }
+                                    } label:{
+                                    if Auth.auth().currentUser?.email == comment.author{
+                                           Image(systemName: "trash")
+                                        }
+                                    }}}}.frame(minHeight: minRowHeight * 40)
+                            
+                            .listStyle(.insetGrouped)
+                    }
+                    
+                }
+                
+     
+            }
+        }.task {
+            await uniPortData.fetchPosts()
+            await uniPortComments.fetchPosts()
+        }.fullScreenCover(isPresented: $uniPortComments.createPost){
+            task{
+                await uniPortComments.fetchPosts()}
+        }content: {
+            CommentView(idPost: post.id!).environmentObject(uniPortComments)
+        }.alert(uniPortComments.alertMsg, isPresented: $uniPortComments.showalert){
+            
+        }.onAppear{
+            i += 1
+        }
+    }
+    @ViewBuilder
+    func CommentsView(comment: Comment)->some View{
+        ScrollView{
+            VStack( spacing: 15){
+            Text("Autor: \(comment.author)").font(.system(size:10))
+            Text(comment.comment).fontWeight(.bold).font(.system(size:14))
+            }.frame(maxWidth: .infinity, alignment: .trailing).task {
+                await uniPortData.fetchPosts()
+                await uniPortComments.fetchPosts()
+            }}
+    }
+}
+        
