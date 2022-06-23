@@ -30,7 +30,6 @@ struct ImagePickerView: UIViewControllerRepresentable {
 
        }
 
-       // Connecting the Coordinator class with this struct
        func makeCoordinator() -> Coordinator {
            return Coordinator(picker: self)
        }
@@ -80,7 +79,5 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                 }
 }
 
-
-             //11355458-4153-44D7-900C-006F76A2FB50
 
             

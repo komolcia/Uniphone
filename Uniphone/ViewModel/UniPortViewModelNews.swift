@@ -1,9 +1,9 @@
 //
-//  UniniPortViewModelNews.swift
+//  UniPortViewModelNews.swift
 //  Uniphone
 //
 //
-//  UniniPortViewModelNews.swift
+//  UniPortViewModelNews.swift
 //  Uniphone
 //
 //  Created by Julia Komorowska on 25/04/2022.
